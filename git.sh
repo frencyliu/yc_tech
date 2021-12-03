@@ -1,7 +1,7 @@
 #/bin/bash
 
 git add .
-git commit -m 'adjust checkout'
+git commit -m 'add language'
 
 git push origin DEV
 
