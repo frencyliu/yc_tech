@@ -1,0 +1,191 @@
+/*
+ * for Designer
+ * 人性化界面
+ * 可以使用前端排版工具(懂CSS)，可以套版
+ * 可新增用戶
+*/
+@import "yc_admin_level_0.css";
+
+
+/*Custom Product Tabs for WooCommerce*/
+.yikes-woo-all-about-us,
+/*WPC*/
+#woobt_settings > table > tbody > tr:nth-child(3),/*個別加入購物車*/
+#woobt_settings > table > tbody > tr:nth-child(1) > th > a,/*setting*/
+/*Support Candy*/
+#wpsc_assign_agent_widget,
+/*#wpbody-content .bootstrap-iso:nth-child(2),*/
+/*CF7 contact form 7*/
+#wpcf7-contact-form-list-table #welcome-panel,
+/*BOGO*/
+#toplevel_page_bogo,
+/*控制台留言*/
+#latest-comments,
+#contextual-help-link-wrap,
+.woocommerce-marketing-knowledgebase-card,
+.wp-list-table tr#tag-29,
+/*wordfenece通知*/
+#wf-extended-protection-notice,
+/*Woocommerce 開始匯入產品*/
+.woocommerce-BlankState-buttons .woocommerce-BlankState-cta,
+/*Woocommerce Setting*/
+/*#wpbody-content .woocommerce #mainform > ul > li:nth-child(3),*/
+#wpbody-content .woocommerce #mainform > table:nth-child(5) > tbody > tr:nth-child(2)
+h2.nav-tab-wrapper#tabs, #toplevel_page_woocommerce,
+.woocommerce-layout__header,
+.woocommerce-layout__activity-panel,
+.a2020_admin_menu .woocommerce-layout__header,
+#wpbody-content > div > .woocommerce-layout,
+#woocommerce-layout__primary .components-card.woocommerce-store-alerts.is-alert-update,
+/*Advanced Shipment Tracking*/
+.zorem-layout__header,
+.zorem_admin_sidebar,
+.woopt_add_action,
+.tab_label[for="tab6"],
+.tab_label[for="trackship"],
+.tab_label[for="integrations_tab"],
+/*.ast_nav_div .menu_trackship_link,*/
+.bulk_upload_documentation_ul li:nth-child(2),
+/**/
+#export_job_settings #reset-profile,
+#export_job_settings #my-left .my-block:last-child,
+#export_job_settings #save-only-btn,
+#export_job_settings #export-wo-pb-btn,
+span#wp-version,
+.update-nag,
+/*創建角時，隱藏其他角色選項*/
+select#role option[value="subscriber"],
+select#role option[value="designer"],
+select#role option[value="wpseo_editor"],
+select#role option[value="wpseo_manager"],
+select#role option[value="contributor"],
+select#role option[value="author"],
+select#role option[value="translator"],
+/*新增使用者*/
+#createuser > table:nth-child(6),
+#createuser > table:nth-child(4) > tbody > tr:nth-child(5),
+/*WC 折價券*/
+#coupon-root,
+.components-card.woocommerce-store-alerts.is-alert-update,
+/*WC 隱藏組合商品*/
+#product-type option[value="grouped"],
+#taxonomy-product_cat .tsf-tooltip-item.tsf-help,
+ul#product_cat-tabs,
+/*匯出會員資料*/
+.wt-import-export-upsell-wrapper.market-box,
+#wpbody-content > div.wt_user_show_legecy_menu.notice-info.notice.is-dismissible,
+#wpbody-content > div.wt_user_show_server_info.notice-warning.notice.is-dismissible,
+/*EZ SMTP*/
+#swpsmtp_settings_form > div:nth-child(3) > div:nth-child(2),
+#post-body > div.swpsmtp-settings-container > div.swpsmtp-settings-grid.swpsmtp-settings-sidebar-cont,
+#swpsmtp-mail > h2,
+/*選單*/
+#nav-menu-meta #add-post-type-admin_menu,
+#nav-menu-meta #add-post-type-admin_notice,
+#nav-menu-meta #add-post-type-admin_toolbar,
+#nav-menu-meta #add-post-type-custom_admin_code,
+#nav-menu-meta #add-post-type-custom_frontend_code,
+#nav-menu-meta #add-post-type-dashboard_widget,
+#nav-menu-meta #add-post-type-hide_metabox,
+#nav-menu-meta #add-post-type-hide_plugin,
+#nav-menu-meta #add-post-type-hide_sidebar,
+#nav-menu-meta #add-post-type-hide_user,
+#nav-menu-meta #add-portfolio_category,
+#nav-menu-meta #add-portfolio_skills,
+#nav-menu-meta #add-portfolio_tags,
+#nav-menu-meta #woocommerce-endpoints-checklist > li:nth-child(2),
+/*MENU PAGE*/
+#menu-appearance,
+#toplevel_page_woocommerce,
+#toplevel_page_wt_import_export_for_woo_basic_export,
+#toplevel_page_woocommerce-marketing,
+#toplevel_page_ai1wm_export,
+#toplevel_page_optimisationio-dashboard,
+#toplevel_page_custom_admin_interface_pro,
+#toplevel_page_Wordfence,
+/*#toplevel_page_loco,*/
+#toplevel_page_heateor-ss-general-options,
+.wp-menu-separator,
+#toplevel_page_WFLS,
+/*外觀自訂*/
+#accordion-section-themes,
+#customize-control-site_icon,
+#accordion-section-colors,
+#accordion-section-header_image,
+#accordion-section-background_image,
+#accordion-panel-widgets,
+#accordion-section-custom_css,
+#accordion-panel-woocommerce,
+/*All in one migration備份*/
+#wpbody-content > div.ai1wm-container > div > div.ai1wm-right,
+#ai1wm-report-problem-button,
+/*自訂結帳表單*/
+.woocommerce_page_checkout_form_designer #wpbody-content > div.wrap > div > h2 > a:nth-child(3),
+.woocommerce_page_checkout_form_designer #wpbody-content > div.wrap > div.thwcfd-wrap > h2,
+.woocommerce_page_checkout_form_designer #thwcfd_field_form > div > main-title,
+/*admin 2020*/
+li.uk-animation-slide-right #a2020-update-wrap,
+/*#offcanvas-user-menu > div > div:nth-child(2) > div > div.uk-width-1-1.uk-margin-top.uk-grid-margin.uk-first-column > div.a2020-switch-container.uk-margin-bottom,*/
+/*文章編輯 edit.php */
+#post_status option[value="pending"],
+.misc-pub-section.misc-pub-visibility,
+.misc-pub-section.misc-pub-revisions,
+#taxonomy-category .tsf-tooltip-wrap,
+#taxonomy-category .tsf-primary-term-selector,
+#taxonomy-category li#category-1,
+button.handle-order-lower,
+button.handle-order-higher,
+#side-sortables #featured-image-2_post,
+#side-sortables #featured-image-3_post,
+#side-sortables #featured-image-4_post,
+#side-sortables #featured-image-5_post,
+#side-sortables #fusion_featured_images_info,
+/*woocommerce_page_wc-order-export menu*/
+.woocommerce_page_wc-order-export h2.nav-tab-wrapper,
+/*social login*/
+.super-socializer_page_heateor-social-login .ui-widget-content,
+.super-socializer_page_heateor-social-login table.menu_content_table,
+/*wp statistics*/
+.wps-wrap .wps-header-banner,
+#wps_overview_ads_postbox,
+#wp-statistics-about-widget,
+body[class*='_page_wps_optimization_page'] #postbox-container-1,
+/*slider revolution*/
+#rs_welcome_header_area,
+/*#new_slider_from_template,
+#add_on_management,*/
+#plugin_update_row,
+#plugin_activation_row,
+#plugin_news_row,
+body.toplevel_page_revslider .div150,
+/*分類頁 - 分類與標籤轉換程式*/
+.edit-term-notes,
+/*simple-css*/
+.appearance_page_simple-css .simple-css-sidebar .postbox{
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+
+
+.admin2020_legacy_admin ul#wp-admin-bar-root-default > li#wp-admin-bar-sitetool{
+    display:block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/*admin 2020 menu*/
+#adminmenu a, #catlist a, #taglist a{
+    white-space: nowrap;
+}
+
+/*新增產品 product*/
+label[for="_downloadable"],
+label[for="_virtual"]{
+    display: none;
+}
+#rs_overview_menu{
+    display: none;
+}

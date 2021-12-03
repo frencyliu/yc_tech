@@ -1,0 +1,652 @@
+/*
+ * for Admin
+ * 限制最少
+*/
+/*新增內容*/
+#wp-admin-bar-new-content,
+.uk-nav-divider,
+#wp-admin-bar-archive,
+#wp-admin-bar-root-default #wp-admin-bar-view,
+span.gutenberg,
+/*發布區塊的清除快取*/
+#misc-publishing-actions > div.misc-pub-section:nth-child(6),
+/*訂單*/
+#posts-filter > div.tablenav.bottom > div.woocommerce-BlankState > div > a.woocommerce-BlankState-cta.button-primary.button,
+/*slider revolution*/
+#wpadmin_overlay,
+#wpadmin_overlay_top {
+    display: none !important;
+}
+
+/*BASIC*/
+::placeholder {
+    color: #ddd;
+    font-style: italic;
+}
+#wpbody {
+    background-color: #fafafa;
+}
+.widefat td {
+    vertical-align: middle;
+}
+input[disabled="disabled"]{
+    background-color: #eee !important;
+}
+input[disabled="disabled"]:hover{
+    cursor: not-allowed !important;
+}
+.yc_general {
+    background-color: #bbb;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    line-height: 2.5em;
+}
+.yc_warning {
+    background-color: lightcoral;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    line-height: 2.5em;
+}
+.yc_success {
+    background-color: green;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    line-height: 2.5em;
+}
+/*統一按鈕樣式*/
+/*button-primary*/
+#woocommerce-order-notes .add_note.button,
+{
+    background: var(--a2020-primary);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0px 20px;
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: normal;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    line-height: 30px;
+}
+#woocommerce-order-notes .add_note.button:hover{
+    background: var(--a2020-primary-darker);
+}
+p > .button.button-primary:first-child{
+    margin-left: 0px !important;
+}
+div.open_with_lc{
+    display: flex;
+    margin-top: 15px;
+}
+div.open_with_lc a.page-title-action{
+    margin-left: 0px !important;
+}
+
+/*GamiPress*/
+.cmb2-wrap input[type=checkbox],
+.gamipress-switch.gamipress-switch-small input{
+    border: none !important;
+    border-radius: unset !important;
+}
+/*APF*/
+p,
+ul,
+ol,
+dl,
+pre,
+address,
+fieldset,
+figure {
+    margin: 0 0 20px 0;
+}
+.repeatable .MyFirstPlugin-field[data-type="inline_mixed"] {
+    display: flex;
+}
+
+
+/*自訂結帳欄位*/
+#wpbody-content > div.wrap > div.thwcfd-wrap > div.wrap.woocommerce {
+    padding: 0px;
+}
+/**Woocommerce WC*/
+.wrap.woocommerce #mainform p.submit{
+    margin-top: 20px;
+}
+
+/*Editor*/
+.lc-add-editing-icon.button.button-primary.button-hero{
+    margin-left: 0px;
+}
+#submitdiv .preview.button{
+    width: 100%;
+}
+#categorydiv #category-tabs,
+#categorydiv .tsf-tooltip-item.tsf-help,
+#product_catdiv .tsf-tooltip-item.tsf-help,
+#categorydiv .tsf-primary-term-selector.tsf-set-primary-term,
+#product_catdiv #product_cat-tabs,
+#submitdiv #save-action,
+#submitdiv #duplicate-action{
+    display: none;
+}
+/*用戶圖片*/
+img.avatar {
+    border-radius: 100% !important;
+}
+/*外觀調整 DASHBOARD跑版*/
+#woocommerce_dashboard_status .wc_status_list li,
+.select2-container {
+    height: unset !important;
+}
+.php-error #adminmenuback,
+.php-error #adminmenuwrap {
+    margin-top: 0px !important;
+}
+body.wp-admin {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.theme-browser .theme .theme-actions a.button-primary {
+    line-height: 30px;
+}
+/*滾動條*/
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #e1e1e1;
+}
+::selection {
+    background-color: #bbd6fb;
+    color: #fff;
+}
+.plugin-card .desc.column-description p:first-child {
+    height: 100px;
+    overflow: auto;
+}
+.plugin-card .name h3 {
+    height: 70px;
+    overflow: hidden;
+}
+.toplevel_page_yc_extention .plugin-card .name h3 {
+    height: auto;
+}
+.column-compatibility span,
+.plugin-card .desc.column-description p.authors {
+    white-space: nowrap;
+}
+
+/*訂單*/
+.post-type-shop_order .woocommerce_order_items_wrapper .quantity {
+    white-space: nowrap;
+}
+ul.order_notes li.system-note .note_content::after {
+    border-color: #e6efff transparent;
+}
+ul.order_notes li.system-note .note_content {
+    background: #e6efff;
+    border-radius: 5px;
+}
+#woocommerce-order-actions .order_actions li#actions select{
+    width: 100%;
+}
+#woocommerce-order-actions .wc-reload{
+    display: none;
+}
+
+/*woocommerce_page_wc-order-export調整*/
+#export_job_settings {
+    padding-left: 30px;
+}
+.wc-wp-version-gte-53 .select2-container .select2-selection--single .select2-selection__rendered {
+    line-height: 28px !important;
+}
+.woocommerce_page_wc-order-export #my-left,
+.woocommerce_page_wc-order-export #my-right {
+    max-width: unset !important;
+}
+.woocommerce_page_wc-order-export .my-block {
+    width: calc(96% + 10px);
+}
+.woocommerce_page_wc-order-export #export-btn,
+.woocommerce_page_wc-order-export.wp-core-ui .button-primary {
+    background-color: var(--a2020-primary);
+    color: #fff;
+}
+.woocommerce_page_wc-order-export #export-btn:hover,
+.woocommerce_page_wc-order-export.wp-core-ui .button-primary:hover {
+    background-color: var(--a2020-primary-darker);
+}
+.woocommerce_page_wc-order-export #fields,
+#unselected_fields {
+    height: 880px;
+}
+.woocommerce_page_wc-order-export .subsubsub li,
+.filter-links li {
+    margin: 0px 5px 15px 0px !important;
+}
+.woocommerce_page_wc-order-export #your-profile label + a {
+    white-space: nowrap;
+}
+.woocommerce_page_wc-order-export .select2-search__field {
+    border-color: #aaa !important;
+}
+.woocommerce_page_wc-order-export.wc-wp-version-gte-53
+    .select2-container
+    .select2-search--inline
+    .select2-search__field,
+.woocommerce_page_wc-order-export
+    .select2-container--default
+    .select2-selection--multiple
+    .select2-selection__rendered
+    li:not(.select2-selection__choice),
+.woocommerce_page_wc-order-export #HTML_options textarea {
+    width: 100% !important;
+}
+.woocommerce_page_wc-order-export.wc-wp-version-gte-53 .select2-container .select2-selection--single {
+    height: 30px !important;
+}
+.woocommerce_page_wc-order-export .wp-picker-container {
+    display: block;
+}
+.woocommerce_page_wc-order-export #XLS_options input[type="text"],
+.woocommerce_page_wc-order-export #CSV_options input[type="text"],
+.woocommerce_page_wc-order-export #XML_options input[type="text"],
+.woocommerce_page_wc-order-export #JSON_options input[type="text"],
+.woocommerce_page_wc-order-export #TSV_options input[type="text"],
+.woocommerce_page_wc-order-export #PDF_options input[type="text"],
+.woocommerce_page_wc-order-export #PDF_options input[type="number"],
+.woocommerce_page_wc-order-export #HTML_options input[type="text"],
+.woocommerce_page_wc-order-export #HTML_options input[type="number"] {
+    display: block;
+    width: 100%;
+    min-height: unset !important;
+    height: 30px;
+}
+/*後台選單換ICON*/
+#adminmenu #toplevel_page_wc-admin-path--analytics-overview div.wp-menu-image:before {
+    content: "\f238";
+}
+#adminmenu #menu-posts-product div.wp-menu-image:before {
+    content: "\f312";
+}
+#adminmenu #menu-posts div.wp-menu-image:before {
+    content: "\f327";
+}
+#adminmenu .dashicons-admin-page:before {
+    content: "\f121";
+}
+
+.wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+    content: "\f319";
+}
+.admin2020_menu .uk-icon-button {
+    background-color: transparent !important;
+}
+
+.a2020-admin-bar.a2020_night_mode {
+    background: #111 !important;
+}
+.a2020_night_mode #wpadminbar #wp-admin-bar-cache > div.ab-item {
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(56, 56, 56, 0.36) !important;
+}
+.a2020_night_mode #wpadminbar #wp-admin-bar-cache:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+.a2020_night_mode #wpadminbar #wp-admin-bar-root-default li .ab-item,
+.a2020_night_mode #wpadminbar #wp-admin-bar-top-secondary li .ab-item {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+.a2020_night_mode #wpadminbar #wp-admin-bar-root-default li .ab-item:hover,
+.a2020_night_mode #wpadminbar #wp-admin-bar-top-secondary li .ab-item:hover {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+#wpwrap .wp-list-table.plugins th {
+    background-color: transparent;
+}
+input[id*="submit_button"] {
+    margin-left: 0px !important;
+}
+
+/*文章編輯*/
+#wpbody-content > div.wrap > a.page-title-action:nth-child(2) {
+    margin-left: 10px;
+}
+#product_tag > div > div.ajaxtag.hide-if-no-js > input.button.tagadd {
+    margin-top: 5px;
+    width: 100%;
+}
+#woocommerce-product-images .inside .add_product_images {
+    margin-top: 6px;
+    padding: 20px;
+}
+#postimagediv p.hide-if-no-js {
+    margin-bottom: 0px;
+}
+#wp-content-editor-tools .insert-media {
+    margin-left: 0px;
+}
+#new-tag-product_tag {
+    width: 100%;
+}
+.tagsdiv #new-tag-post_tag {
+    width: 165px;
+}
+.wp-tab-active,
+ul.add-menu-item-tabs li.tabs,
+ul.category-tabs li.tabs {
+    border: none;
+    background-color: var(--a2020-primary) !important;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+#post-body ul.add-menu-item-tabs li.tabs a,
+#post-body ul.category-tabs li.tabs a,
+#side-sortables .add-menu-item-tabs .tabs a,
+#side-sortables .category-tabs .tabs a,
+.wp-tab-bar .wp-tab-active a {
+    color: #fff;
+}
+.categorydiv div.tabs-panel,
+.customlinkdiv div.tabs-panel,
+.posttypediv div.tabs-panel,
+.taxonomydiv div.tabs-panel,
+.wp-tab-panel {
+    border: none;
+}
+ul.add-menu-item-tabs li,
+ul.category-tabs li,
+ul.wp-tab-bar li {
+    width: 40% !important;
+    display: inline-block;
+    text-align: center;
+}
+
+/*all in one migration*/
+.admin2020_menu .wp-menu-open.toplevel_page_ai1wm_export,
+.admin2020_menu .wp-menu-open.toplevel_page_ai1wm_export > a {
+    background-color: unset !important;
+}
+
+/*調整快取選單位置*/
+#wpadminbar .ab-top-secondary .menupop .ab-sub-wrapper {
+    right: auto;
+    left: 0;
+    /*top: calc(100% + 15px);*/
+}
+/*BOGO*/
+#bogo-add-translation {
+    width: 100%;
+}
+/* tool bar cache icon*/
+#wpadminbar #wp-admin-bar-cache > div.ab-item {
+    /*min-height: unset;
+    background-color: #f8f8f8 !important;*/
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.wp-menu-open.toplevel_page_ai1wm_export,
+.wp-menu-open.toplevel_page_ai1wm_export > a {
+    background-color: unset !important;
+}
+
+/*Loco translate*/
+#loco-actions fieldset {
+    margin-top: 0px !important;
+}
+#loco-admin.wrap #loco-editor > nav button.only-icon {
+    width: unset !important;
+}
+
+/*woocommerce-advanced-shipment-tracking shipping*/
+.woocommerce.zorem_admin_layout{
+    padding: 0px 32px;
+}
+.woocommerce_page_woocommerce-advanced-shipment-tracking table.wp-list-table img.provider-thumb {
+    height: unset;
+}
+.woocommerce_page_woocommerce-advanced-shipment-tracking .wrap {
+    padding: 30px 0px;
+}
+.woocommerce_page_woocommerce-advanced-shipment-tracking .wp-header-end {
+    visibility: visible;
+    border: 1px solid #999;
+}
+.woocommerce_page_woocommerce-advanced-shipment-tracking .wrap h2.wp-heading-inline {
+    font-size: 1.5rem;
+}
+.woocommerce_page_woocommerce-advanced-shipment-tracking .wrap .page-title-action {
+    margin-bottom: 50px;
+    display: inline-block;
+    float: unset;
+    padding: 10px 20px !important;
+}
+
+/*woocommerce order*/
+
+.tablenav.top .alignleft.actions.bulkactions {
+    display: flex;
+}
+.post-type-shop_order #order_data h3::before {
+    content: "!";
+    font-size: 12px;
+    font-weight: 900;
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    background-color: #0c5cef;
+    display: inline-block;
+    text-align: center;
+    border-radius: 100%;
+    line-height: 18px;
+    position: relative;
+    top: -2px;
+    color: #fff;
+}
+.post-type-shop_order #order_data h3 {
+    font-size: 18px;
+    font-weight: 900;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 30px !important;
+    padding-bottom: 20px;
+}
+
+.post-type-shop_order #order_data .order_data_column:first-child {
+    padding-bottom: 25px;
+}
+.post-type-shop_order #order_data .order_data_column {
+    width: 98%;
+}
+.post-type-shop_order #poststuff #woocommerce-order-notes .inside button,
+.post-type-shop_order #poststuff #woocommerce-order-actions .inside button,
+.tablenav.top .alignleft.actions {
+    width: 100%;
+}
+.post-type-shop_order #poststuff #woocommerce-order-notes .inside {
+    padding: 20px 0px;
+}
+select#order_note_type{
+    width: 100%;
+}
+.post-type-shop_order #order_note_type {
+    margin-bottom: 10px;
+}
+.post-type-shop_order .add_note #add_order_note {
+    height: 150px;
+}
+/*.post-type-shop_order #order_data .order_data_column .form-field .select2-container,*/
+.post-type-shop_order #order_data .order_data_column .form-field .date-picker {
+    max-width: 300px !important;
+}
+.post-type-shop_order #order_data .order_data_column .form-field .hour,
+#order_data .order_data_column .form-field .minute {
+    width: 67px;
+    text-align: right !important;
+}
+
+/*setting api*/
+div.upload > div {
+    display: inline-block;
+    min-width: 300px;
+    margin-top: 5px;
+}
+div.metabox-holder > form > h2 {
+    display: none;
+}
+form[action="options.php"] .button.button-primary {
+    margin-left: -10px !important;
+}
+
+/*wp statistic*/
+body[class*="_page_wps_optimization_page"] #poststuff {
+    min-width: unset;
+}
+body[class*="_page_wps_optimization_page"] #poststuff #post-body.columns-2 {
+    margin-right: unset;
+}
+body[class*="_page_wps_optimization_page"] .wps-wrap__main {
+    padding: 0px;
+}
+
+/*Duplicate post*/
+#export-action > a {
+    width: 100%;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 2.15384615;
+    min-height: 30px;
+    font-weight: normal;
+    border: none;
+    color: #333;
+    border: 1px solid #e5e5e5;
+}
+#export-action > a:hover {
+    border-color: #666;
+    color: #333;
+    text-decoration: unset;
+}
+
+/*新增文章 post*/
+#minor-publishing #misc-publishing-actions {
+    padding-bottom: 0px;
+}
+#minor-publishing #minor-publishing-actions {
+    padding: 20px 20px 0px 20px;
+}
+/*.wp-core-ui select:not(#product-type) {
+    width: 100%;
+}*/
+.wp-core-ui #woocommerce-product-data select:not(#product-type) {
+    width: 50%;
+}
+
+label[for="slugdiv-hide"] {
+    display: none;
+}
+
+#slugdiv {
+    display: none;
+}
+
+/*新增產品 product*/
+.post-type-product #sku {
+    min-width: 53px;
+}
+
+/*slider revolution*/
+/*body.toplevel_page_revslider,
+    body.toplevel_page_revslider #wpwrap,
+    body.toplevel_page_revslider #wpwrap #wpcontent,
+    body.toplevel_page_revslider #rs_overview{
+        -webkit-filter: invert(100%);
+    }*/
+body.toplevel_page_revslider #toplevel_page_revslider,
+body.toplevel_page_revslider .toplevel_page_revslider {
+    background-color: unset;
+    background: unset;
+}
+body.toplevel_page_revslider #rs_overview_menu {
+    margin-left: 0px;
+    top: 61px !important;
+}
+body.toplevel_page_revslider #rb_the_logo {
+    background: url(../img/menu.png) !important;
+    background-size: 30px 30px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+.showwpmenus .uk-background-default {
+    background-color: #323438;
+}
+#rs_overview_menu {
+    z-index: 98;
+}
+/*擴充模組*/
+.toplevel_page_yc_extention .plugin-card .desc {
+    margin-right: 0px;
+}
+.toplevel_page_yc_extention .plugin-card .name {
+    margin-right: 85px;
+}
+
+.plugin-card-img {
+    height: 128px !important;
+    width: 128px !important;
+    object-fit: contain !important;
+    border-radius: 100% !important;
+    box-shadow: 0px 0px 10px #ccc !important;
+    padding: 10px !important;
+}
+
+/*分類頁*/
+body[class*="taxonomy-"] .button.button-primary {
+    margin-left: 0px;
+}
+/*商品 product*/
+table.wp-list-table span.wc-featured,
+table.wp-list-table span.wc-image {
+    margin-left: 0px;
+}
+
+/*Media Upload*/
+.ilab-admin-separator-container .ilab-admin-separator-title {
+    color: #000 !important;
+}
+.ilab-admin-separator-container .ilab-admin-separator-title::before {
+    content: "- ";
+}
+.ilab-admin-separator-container .ilab-admin-separator-title::after {
+    content: " -";
+}
+
+/*Support Candy*/
+.raised_by_div .thread_avatar {
+    width: 30px !important;
+}
+
+/*Custom Product Tabs for WooCommerce*/
+.woo-ct-admin-page-wrap > h1 {
+    display: none !important;
+}
+.yikes_woo_add_another_tab a {
+    color: #fff !important;
+}
+.yikes_woo_reusable_tab_title_label {
+    width: unset;
+    position: relative;
+    top: 7px;
+}

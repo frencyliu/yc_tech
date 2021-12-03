@@ -1,0 +1,15 @@
+/*
+ * for Business Owner
+ * 人性化界面
+ * 超簡單輸入框
+ * 新增用戶
+*/
+
+@import "yc_admin_level_1.css";
+
+li.designer .count{
+    display: none;
+}
+
+
+
