@@ -5,6 +5,7 @@
  */
 
 namespace YC\Admin;
+
 use YC_TECH;
 
 defined('ABSPATH') || exit;
@@ -16,7 +17,6 @@ class _Menu extends YC_TECH
     {
         add_filter('custom_menu_order', '__return_true', 10);
         add_action('admin_menu', [$this, 'yc_amp_setting'], 97);
-
     }
 
     //代辦：9li.uk-open選單會打開
@@ -302,28 +302,28 @@ class _Menu extends YC_TECH
   null
   );*/
 
-  //商品全局TAB
-  add_submenu_page(
-    'edit.php?post_type=product',
-    __('商品全局TAB', 'YC_TECH'),
-    __('商品全局TAB', 'YC_TECH'),
-    'edit_posts',
-    'admin.php?page=yikes-woo-settings',
-    '',
-    10
-);
+        //商品全局TAB
+        add_submenu_page(
+            'edit.php?post_type=product',
+            __('商品全局TAB', 'YC_TECH'),
+            __('商品全局TAB', 'YC_TECH'),
+            'edit_posts',
+            'admin.php?page=yikes-woo-settings',
+            '',
+            10
+        );
 
 
 
-    add_menu_page(
-                'BOOTSTRAP 變數設定',
-                'BOOTSTRAP 變數設定',
-                'read',
-                'customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit',
-                '',
-                'dashicons-admin-appearance',
-                6
-            );
+        add_menu_page(
+            'BOOTSTRAP 變數設定',
+            'BOOTSTRAP 變數設定',
+            'read',
+            'customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit',
+            '',
+            'dashicons-admin-appearance',
+            6
+        );
 
 
 
@@ -349,7 +349,7 @@ class _Menu extends YC_TECH
         remove_menu_page('yikes-woo-settings');
         remove_menu_page('revslider');
         remove_menu_page('theseoframework-settings');
-        if(!WP_DEBUG){
+        if (!WP_DEBUG) {
             remove_submenu_page('edit.php?post_type=page', '#lc_click_action_new_page');
         }
         if (!TAG_ENABLE) {
@@ -357,8 +357,6 @@ class _Menu extends YC_TECH
             remove_submenu_page('edit.php?post_type=product', 'edit-tags.php?taxonomy=product_tag&amp;post_type=product');
             remove_submenu_page('edit.php?post_type=product', 'product_attributes');
         }
-
-
     }
 
 
@@ -445,6 +443,7 @@ class _Menu extends YC_TECH
         $this->yc_remove_menu_page_level_1();
         remove_menu_page('loco');
         remove_menu_page('ags-layouts');
+        remove_menu_page('customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit');
     }
 
 
@@ -453,9 +452,6 @@ class _Menu extends YC_TECH
     {
         echo '<h2>還在吸取日月精華...</h2>';
     }
-
-
-
 }
 new _Menu();
 

@@ -111,8 +111,9 @@ class _Default extends YC_TECH
 
         for ($i = 0; $i < ORDER_HISTORY; $i++) {
             $order = (@$_REQUEST['ts' . $i] == 'DESC') ? 'ASC' : 'DESC';
-            $month = current_time('m') - $i;
-            $columns['ts' . $i] = '<a title="' . $month . '月累積採購金額" href="?ts' . $i . '=' . $order . '">' . $month . '月</a>';
+            $the_date = date('Y年m', strtotime("-" . $i ." month"));
+            //$month = current_time('m') - $i;
+            $columns['ts' . $i] = '<a title="' . $the_date . '月累積採購金額" href="?ts' . $i . '=' . $order . '">' . $the_date . '月</a>';
         }
         $columns['goal_gg'] = '<span title="連續未達標幾個月等狀態(不計算當月)">狀態</span>'; //
 

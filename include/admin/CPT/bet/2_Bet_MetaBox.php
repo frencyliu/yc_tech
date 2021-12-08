@@ -16,7 +16,7 @@ class _Bet_Setting extends \yc_AdminPageFramework_MetaBox
     public function add_in_submitbox()
     {
 
-        if(get_current_screen()->id == 'gg_game'):
+        if(get_current_screen()->id == 'gg_bet'):
         global $post;
         $html = '';
         ob_start();
@@ -78,17 +78,17 @@ class _Bet_Setting extends \yc_AdminPageFramework_MetaBox
 
         $this->addSettingSections(
             array(
-                'section_id'        => 'game_date_sec',
+                'section_id'        => 'bet_date_sec',
                 'section_tab_slug'  => 'tabbed_sections',   // <-- set a unique tab slug
                 'title'             => '賽事時間',
             ),
             array(
-                'section_id'        => 'game_bet_sec',
+                'section_id'        => 'bet_bet_sec',
                 'section_tab_slug'  => 'tabbed_sections',   // <-- set a unique tab slug
                 'title'             => '下注狀況',
             ),
             array(
-                'section_id'        => 'game_result_sec',
+                'section_id'        => 'bet_result_sec',
                 'section_tab_slug'  => 'tabbed_sections',   // <-- set a unique tab slug
                 'title'             => '賽事狀態',
             ),
@@ -98,7 +98,7 @@ class _Bet_Setting extends \yc_AdminPageFramework_MetaBox
          * Adds setting fields in the meta box.
          */
         $this->addSettingFields(
-            'game_date_sec',
+            'bet_date_sec',
             array(
                 'field_id'      => 'date_group',
                 'type'          => 'inline_mixed',
@@ -197,7 +197,7 @@ class _Bet_Setting extends \yc_AdminPageFramework_MetaBox
 
         //END DEV
         $this->addSettingFields(
-            'game_bet_sec',
+            'bet_bet_sec',
             array(
                 'field_id'      => 'project_subtitle',
                 //'type'          => 'text',
@@ -206,7 +206,7 @@ class _Bet_Setting extends \yc_AdminPageFramework_MetaBox
         );
 
         $this->addSettingFields(
-            'game_result_sec',
+            'bet_result_sec',
             array(
                 'field_id'      => 'result',
                 'type'          => 'select',
@@ -246,7 +246,7 @@ class _Bet_Setting extends \yc_AdminPageFramework_MetaBox
 new _Bet_Setting(
     'gg_Bet_setting',   // meta box ID - can be null.
     __('賽事設定', 'yc_tech'), // title
-    array('gg_game'),                               // post type slugs: post, page, etc.
+    array('gg_bet'),                               // post type slugs: post, page, etc.
     'normal',                                        // context
     'high'                                          // priority
 );
@@ -255,7 +255,7 @@ new _Bet_Setting(
 //-----------------------------------------------------------------//
 
 
-class _Game_Result extends \yc_AdminPageFramework_MetaBox
+class _Bet_Result extends \yc_AdminPageFramework_MetaBox
 {
     public function start()
     {
@@ -325,10 +325,10 @@ class _Game_Result extends \yc_AdminPageFramework_MetaBox
     }
 }
 /*
-new _Game_Result(
+new _Bet_Result(
     null,   // meta box ID - can be null.
     __('賽事狀態', 'yc_tech'), // title
-    array('gg_game'),                               // post type slugs: post, page, etc.
+    array('gg_bet'),                               // post type slugs: post, page, etc.
     'side',                                        // context
     'high'                                          // priority
 );

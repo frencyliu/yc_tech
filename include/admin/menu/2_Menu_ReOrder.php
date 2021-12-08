@@ -30,9 +30,11 @@ class _Menu_ReOrder extends YC_TECH
         echo '</pre>';*/
         //--debug--//
 
-        return array(
+        $menu_order = array(
             //'index.php',
             'admin.php?page=wps_overview_page',
+            'edit.php?post_type=gg_game',
+            'edit.php?post_type=gg_bet',
             'wc-admin&path=/analytics/overview',
             'edit.php?post_type=shop_order',
             'admin.php?page=woocommerce-advanced-shipment-tracking',
@@ -51,6 +53,10 @@ class _Menu_ReOrder extends YC_TECH
             //'yc_extention',
             //'yc_teach',
         );
+
+
+
+        return $menu_order;
     }
 
 }

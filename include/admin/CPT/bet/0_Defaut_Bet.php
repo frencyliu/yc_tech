@@ -18,10 +18,9 @@ class _Default extends YC_TECH
 {
     public function __construct()
     {
-        $this->_loadCustomPostType();
     }
 
-    private function _loadCustomPostType()
+    private function menu_reorder($menu_order)
     {
 
     }
@@ -32,4 +31,4 @@ new _Default();
 
 require_once __DIR__ . '/1_Menu_Bet.php';
 require_once __DIR__ . '/2_Bet_MetaBox.php';
-//require_once __DIR__ . '/3_Frontend_Form.php'; //do not add here 
+//require_once __DIR__ . '/3_Frontend_Form.php'; //do not add here
