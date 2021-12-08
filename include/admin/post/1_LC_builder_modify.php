@@ -18,7 +18,7 @@ class _LC extends YC_TECH
         add_action('admin_head',  [$this, 'yc_remove_add_page_btn'], 100);
         add_action('admin_head',  [$this, 'LC_support'], 100);
         add_action('admin_footer', [$this, 'yc_create_LC_btn'], 100);
-        add_action('save_post_page', [$this, 'yc_set_LC_enable_to_posttype'], 100, 3);
+        //add_action('save_post_page', [$this, 'yc_set_LC_enable_to_posttype'], 100, 3);
 
 
 
@@ -43,17 +43,12 @@ class _LC extends YC_TECH
         endif;
     }
 
-    public function yc_set_LC_enable_to_posttype($post_ID)
+    /*public function yc_set_LC_enable_to_posttype($post_ID)
     {
-        global $post;
-        if (is_null($post)) {
+        if(get_current_screen()->id == 'page'){
             update_post_meta($post_ID, '_lc_livecanvas_enabled', '1', '');
-        } else {
-            if ($post->post_status != "publish") { //新發布才執行
-                update_post_meta($post_ID, '_lc_livecanvas_enabled', '1', '');
-            }
         }
-    }
+    }*/
 
     public function yc_create_LC_btn()
     {

@@ -1,11 +1,9 @@
 <?php
 namespace YC\Admin;
-use yc_AdminPageFramework;
-require_once(YC_ROOT_DIR . 'library/APF/admin-page-framework.php');
 
 if (!class_exists('yc_AdminPageFramework') || !WP_DEBUG) return;
 
-class _Menu_Advance extends yc_AdminPageFramework
+class _Menu_Advance extends \yc_AdminPageFramework
 {
     /**
      * The set-up method which is triggered automatically with the 'wp_loaded' hook.

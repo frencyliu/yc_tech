@@ -18,7 +18,7 @@ span.gutenberg,
     display: none !important;
 }
 
-/*BASIC*/
+/*GENERAL*/
 ::placeholder {
     color: #ddd;
     font-style: italic;
@@ -29,12 +29,47 @@ span.gutenberg,
 .widefat td {
     vertical-align: middle;
 }
+.w-100{
+    width: 100% !important;
+}
+/*text align*/
+.text-center{
+    text-align: center !important;
+}
+.text-left{
+    text-align: left !important;
+}
+.text-right{
+    text-align: right !important;
+}
+.text-justify{
+    text-align: justify !important;
+}
+
+/*form*/
 input[disabled="disabled"]{
     background-color: #eee !important;
 }
 input[disabled="disabled"]:hover{
     cursor: not-allowed !important;
 }
+/*button 統一按鈕樣式*/
+/*button-primary*/
+#woocommerce-order-notes .add_note.button{
+    background: var(--a2020-primary);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0px 20px;
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: normal;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+/*tag*/
 .yc_general {
     background-color: #bbb;
     color: #fff;
@@ -56,25 +91,31 @@ input[disabled="disabled"]:hover{
     border-radius: 4px;
     line-height: 2.5em;
 }
-/*統一按鈕樣式*/
-/*button-primary*/
-#woocommerce-order-notes .add_note.button,
-{
-    background: var(--a2020-primary);
-    color: #fff;
-    border-radius: 4px;
-    padding: 0px 20px;
-    box-shadow: none;
-    font-size: 14px;
-    font-weight: normal;
-    border: none;
-    width: 100%;
-    font-size: 14px;
-    line-height: 30px;
+
+/*table*/
+.table-border{
+    border: 1px solid #bbb;
+}
+.table-border th,
+.table-border td{
+    border-bottom: 1px solid #bbb;
+}
+.form-table .table-border td:not(:first-child),
+.form-table .table-border th:not(:first-child){
+    text-align: center;
+}
+/*color*/
+.bg-light-red{
+    background-color: #ffe6e6;
+}
+.bg-light-blue{
+    background-color: #d6e5fe;
 }
 #woocommerce-order-notes .add_note.button:hover{
     background: var(--a2020-primary-darker);
 }
+
+
 p > .button.button-primary:first-child{
     margin-left: 0px !important;
 }
@@ -106,6 +147,9 @@ figure {
 .repeatable .MyFirstPlugin-field[data-type="inline_mixed"] {
     display: flex;
 }
+fieldset div[class*="-input-label-container"]{
+    text-align: left;
+}
 
 
 /*自訂結帳欄位*/
@@ -118,6 +162,25 @@ figure {
 }
 
 /*Editor*/
+#postexcerpt textarea#excerpt{
+    margin: 0px;
+}
+#postexcerpt .inside p{
+    display: none;
+}
+#post-body ul>li[class*="section-tab nav-tab"]{
+    max-height: 3em;
+}
+#post-body ul>li[class*="section-tab nav-tab"] a{
+    display: block;
+    border-bottom:none;
+}
+#the-list tr.no-items td{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    padding: 48px 0px;
+}
 .lc-add-editing-icon.button.button-primary.button-hero{
     margin-left: 0px;
 }
@@ -125,9 +188,11 @@ figure {
     width: 100%;
 }
 #categorydiv #category-tabs,
+.categorydiv > ul.category-tabs,
 #categorydiv .tsf-tooltip-item.tsf-help,
 #product_catdiv .tsf-tooltip-item.tsf-help,
 #categorydiv .tsf-primary-term-selector.tsf-set-primary-term,
+.categorydiv .tsf-primary-term-selector-help-wrap,
 #product_catdiv #product_cat-tabs,
 #submitdiv #save-action,
 #submitdiv #duplicate-action{
@@ -429,7 +494,7 @@ ul.wp-tab-bar li {
 .woocommerce_page_woocommerce-advanced-shipment-tracking .wrap .page-title-action {
     margin-bottom: 50px;
     display: inline-block;
-    float: unset;
+    float: none;
     padding: 10px 20px !important;
 }
 

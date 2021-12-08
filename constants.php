@@ -14,6 +14,8 @@ class _Const extends YC_TECH
 
     public function __construct()
     {
+            if (!defined('BET')) define('BET', false);
+
             define('YC_ROOT_DIR', plugin_dir_path( __FILE__ ));
 
 

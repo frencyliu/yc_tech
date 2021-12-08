@@ -4,7 +4,7 @@
  * Video post type
  */
 
-namespace YC\Admin;
+namespace YC\Admin\Column;
 
 use YC_TECH;
 
@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 //秀幾個月前的訂單金額
 define('ORDER_HISTORY', 4);
 
-class _Column extends YC_TECH
+class _Default extends YC_TECH
 {
 
     public function __construct()
@@ -219,4 +219,4 @@ class _Column extends YC_TECH
         }
     }
 }
-new _Column();
+new _Default();

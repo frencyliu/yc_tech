@@ -125,11 +125,11 @@ foreach ($all_post_types as $post_type) {
         'side'
     );
 
-    remove_meta_box(
+    /*remove_meta_box(
         'slugdiv',//代稱
         $post_type,
         'normal'
-    );
+    );*/
 
     if(!TAG_ENABLE){
         remove_meta_box(

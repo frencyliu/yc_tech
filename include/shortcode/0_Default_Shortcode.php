@@ -24,13 +24,13 @@ class _General extends YC_TECH
     public function yc_add_shortcode()
     {
         //login form
-        add_shortcode('yc_login_form', 'yc_login_form_function');
+        add_shortcode('yc_login_form', [$this, 'yc_login_form_function' ]);
 
-        add_shortcode('dotifollow', [$this, 'dotifollow_function']);
         add_shortcode('get_monthly_sales', [$this, 'get_monthly_sales_f']);
         add_shortcode('get_last_monthly_sales', [$this, 'get_last_monthly_sales_f']);
         add_shortcode('get_dates_sales', [$this, 'get_dates_sales_f']);
     }
+
 
     /*
     add_action( 'login_form_middle', 'add_lost_password_link' );
@@ -42,8 +42,7 @@ function add_lost_password_link() {
   function yc_login_form_function()
   {
 
-    return 'pdguoagnoagdagamgoomvanoagniagnadgnoangomodo ga ';
-      /*
+
       $args = array(
         'echo'           => true,
         'remember'       => true,
@@ -61,7 +60,6 @@ function add_lost_password_link() {
         'value_remember' => false
     );
     wp_login_form($args);
-    */
     //add_lost_password_link();
   }
 

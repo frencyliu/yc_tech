@@ -18,7 +18,7 @@ class _CSS_JS extends YC_TECH
         add_action('admin_enqueue_scripts', [$this, 'yc_enqueue_admin_css'], 100);
         add_action('wp_enqueue_scripts', [$this, 'yc_enqueue_front_css'], 100);
         add_action('admin_footer', [$this, 'yc_enqueue_admin_js'], 100);
-            add_action('admin_footer', [$this, 'yc_footer_js'], 101);
+        add_action('admin_footer', [$this, 'yc_footer_js'], 101);
         add_action('wp_enqueue_scripts', [$this, 'yc_enqueue_front_js'], 100);
     }
 
@@ -63,6 +63,7 @@ class _CSS_JS extends YC_TECH
 
     public function yc_enqueue_front_js()
     {
+        wp_enqueue_script('Lottie js', 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js');
         wp_enqueue_script('YC_TECH front js', plugins_url('/../../../assets/js/yc_front.js', __FILE__));
         if (FA_ENABLE) {
             wp_enqueue_script('fontawesome_js',  plugins_url('/../../../assets/fontawesome/js/all.min.js', __FILE__));

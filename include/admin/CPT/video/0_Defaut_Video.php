@@ -3,13 +3,13 @@
 /**
  * Video post type
  */
-namespace YC\Admin\CPT;
+namespace YC\Admin\CPT\Video;
 use YC_TECH;
 
 defined('ABSPATH') || exit;
 
 if(!VIDEO_CPT) return;
-class _Video extends YC_TECH
+class _Default extends YC_TECH
 {
 
     public function __construct()
@@ -50,6 +50,6 @@ class _Video extends YC_TECH
 
 
 }
-new _Video();
+new _Default();
 
 require_once __DIR__ . '/APF.php';

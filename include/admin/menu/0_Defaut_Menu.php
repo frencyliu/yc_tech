@@ -315,6 +315,17 @@ class _Menu extends YC_TECH
 
 
 
+    add_menu_page(
+                'BOOTSTRAP 變數設定',
+                'BOOTSTRAP 變數設定',
+                'read',
+                'customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit',
+                '',
+                'dashicons-admin-appearance',
+                6
+            );
+    }
+
 
 
 
