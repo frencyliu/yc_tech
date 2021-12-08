@@ -324,7 +324,6 @@ class _Menu extends YC_TECH
                 'dashicons-admin-appearance',
                 6
             );
-    }
 
 
 
