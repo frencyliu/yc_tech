@@ -10,7 +10,7 @@ use YC_TECH;
 
 defined('ABSPATH') || exit;
 
-if (class_exists('Bogo_POMO', false)) return;
+if (!class_exists('Bogo_POMO', false)) return;
 
 class _bogo extends YC_TECH
 {
