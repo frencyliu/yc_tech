@@ -28,30 +28,60 @@ class _Default extends YC_TECH
 
         }
 
+
         //設定欄位標題
         add_filter('manage_users_columns', [$this, 'set_custom_edit_users_columns'], 200, 1);
         //設定欄位值
         add_filter('manage_users_custom_column', [$this, 'custom_users_column'], 200, 3);
         //add_action( 'admin_head', [$this, 'get_order_data_by_user_date'],200 );
+
+        //排序
+        add_filter('users_list_table_query_args', function ($args) {
+            if (isset($_REQUEST['ts_all'])) {
+                $args['orderby'] = 'meta_value_num';
+                $args['meta_key'] = '_total_sales_in_life';
+                $args['order'] = $_REQUEST['ts_all'];
+                return $args;
+            }
+            for ($i = 0; $i < 3; $i++) {
+                if (isset($_REQUEST['ts' . $i])) {
+                    $args['orderby'] = 'meta_value_num';
+                    $args['meta_key'] = '_total_sales_in_' . $i . '_months_ago';
+                    $args['order'] = $_REQUEST['ts' . $i];
+                }
+            }
+            return $args;
+        }, 200, 1);
     }
 
-    public function get_order_data_by_user_date($user_id = 2, $months_ago = 0, $args = array())
+    static public function get_order_history_num(){
+        $default_order_history = 4;
+       return apply_filters( 'yc_change_order_history', $default_order_history );
+    }
+
+    /** !!!!!!!!!!!!!!!!!!!!
+     * 取得客戶訂單
+     *
+     * 時間參考
+     * //https://wisdmlabs.com/blog/query-posts-or-comments-by-date-time/
+     */
+    public function get_order_data_by_user_date($user_id, $months_ago = 0, $args = array())
     {
-        if (!IS_WC) return;
+        $user = get_userdata($user_id);
+        $that_date = strtotime("first day of -" . $months_ago ." month", time());
+        $that_date = strtotime("first day of +1 month", $that_date);
+
+        $user_registed_time = strtotime($user->data->user_registered);
+        $is_registered = ($user_registed_time >=  $that_date) ? false : true;
+
+
         $month = current_time('m') - $months_ago;
         $year = current_time('Y');
 
-        $user = get_userdata($user_id);
-        $user_registed_year = date('Y', strtotime($user->data->user_registered));
-        $user_registed_month = date('m', strtotime($user->data->user_registered));
 
-        if ($year == $user_registed_year && $month == $user_registed_month) {
-            $specific_date = strtotime(date("Y-m-d", strtotime("first day of +1 month", time())));
-            //判斷用戶是否註冊
-            $is_registered = (strtotime($user->data->user_registered) <= $specific_date) ? true : false;
-        } else {
-            $is_registered = ($year >= $user_registed_year && $month >= $user_registed_month) ? true : false;
-        }
+
+
+
         if (empty($args)) {
             $args = array(
                 'numberposts' => -1,
@@ -74,7 +104,9 @@ class _Default extends YC_TECH
         $order_data['total'] = $total;
         $order_data['order_num'] = count($customer_orders);
         $order_data['user_is_registered'] = $is_registered;
+
         $user_role = get_user_by('id', $user_id)->roles[0];
+        //var_dump($user_role);
         switch ($user_role) {
             case 'sh_vendor_a': //Administrator sh_vendor_a
                 $goal = 20000;
@@ -100,8 +132,6 @@ class _Default extends YC_TECH
 
 
 
-
-
     public function set_custom_edit_users_columns($columns)
     {
         if (!IS_WC) return $columns;
@@ -109,9 +139,9 @@ class _Default extends YC_TECH
         $order = (@$_REQUEST['ts_all'] == 'DESC') ? 'ASC' : 'DESC';
         $columns['total_order_amount'] = '<a title="用戶註冊後至今累積總消費金額" href="?ts_all=' . $order . '">全部</a>';
 
-        for ($i = 0; $i < ORDER_HISTORY; $i++) {
+        for ($i = 0; $i < SELF::get_order_history_num(); $i++) {
             $order = (@$_REQUEST['ts' . $i] == 'DESC') ? 'ASC' : 'DESC';
-            $the_date = date('Y年m', strtotime("-" . $i ." month"));
+            $the_date = date('Y年m', strtotime("-" . $i . " month"));
             //$month = current_time('m') - $i;
             $columns['ts' . $i] = '<a title="' . $the_date . '月累積採購金額" href="?ts' . $i . '=' . $order . '">' . $the_date . '月</a>';
         }
@@ -129,30 +159,32 @@ class _Default extends YC_TECH
         if (!IS_WC) return;
         $default_value = '0';
         //$user = get_userdata( $user_id );
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < SELF::get_order_history_num(); $i++) {
             if ($column_name == 'ts' . $i) {
-                //$order_data = $this->get_order_data_by_user_date($user_id, $i);
                 $order_data = $this->get_order_data_by_user_date($user_id, $i);
-                update_user_meta($user_id, '_total_sales_in_' . $i . '_months_ago', $order_data['total']);
+
                 if ($order_data['user_is_registered']) {
                     switch ($order_data['goal']) {
                         case 'no_goal':
                             $text = '';
                             break;
                         case 'yes':
-                            $text = '<span class="yc_success">達標<span>';
+                            $text = '<span class="jdaio_success">達標<span>';
                             break;
                         case 'no':
-                            $text = '<span class="yc_warning">不達標<span>';
+                            $text = '<span class="jdaio_warning">不達標<span>';
                             break;
                         default:
                             $text = '';
                             break;
                     };
+                    $html = 'NT$ ' . $order_data['total'] . '<br>訂單' . $order_data['order_num'] . '筆<br>' . $text;
                 } else {
-                    return '<span class="yc_general">當時尚未註冊</span>';
+                    $html = '<span class="jdaio_general">當時尚未註冊</span>';
                 }
-                $html = 'NT$ ' . $order_data['total'] . '<br>訂單' . $order_data['order_num'] . '筆<br>' . $text;
+
+                update_user_meta($user_id, '_total_sales_in_' . $i . '_months_ago', strip_tags($html));
+
                 return $html;
             }
         }
@@ -173,7 +205,9 @@ class _Default extends YC_TECH
                 }
                 if ($count == 6) { //連續N個月達標
                     $bonus = $total_in_six_months * 0.05;
-                    return '<span class="yc_success">連續' . $count . '個月達標</span><br>總採購金額NT$ ' . $total_in_six_months . '<br>5%金額為NT$ ' . $bonus;
+                    $output = '<span class="jdaio_success">連續' . $count . '個月達標</span><br>總採購金額NT$ ' . $total_in_six_months . '<br>5%金額為NT$ ' . $bonus;
+                    update_user_meta($user_id, 'goal_gg', strip_tags($output));
+                    return $output;
                 }
 
 
@@ -183,19 +217,27 @@ class _Default extends YC_TECH
                         if ($order_data['goal'] == 'no') {
                             if ($i >= 4) {
                                 $j = $i - 1;
-                                return '<span class="yc_warning">連續' . $j . '個月未達標</span>';
+                                $output = '<span class="jdaio_warning">連續' . $j . '個月未達標</span>';
+                                update_user_meta($user_id, 'goal_gg', strip_tags($output));
+                                return $output;
                                 exit;
                             }
                         } elseif ($i == 1 && $order_data['goal'] == 'yes') {
-                            return '';
+                            $output = '';
+                            update_user_meta($user_id, 'goal_gg', strip_tags($output));
+                            return $output;
                             exit;
                         } elseif ($order_data['goal'] == 'yes') {
                             $j = $i - 1;
-                            return '<span class="yc_warning">連續' . $j . '個月未達標</span>';
+                            $output = '<span class="jdaio_warning">連續' . $j . '個月未達標</span>';
+                            update_user_meta($user_id, 'goal_gg', strip_tags($output));
+                            return $output;
                             exit;
                         }
                     } else {
-                        return '<span class="yc_general">註冊未滿3個月</span>';
+                        $output = '<span class="jdaio_general">註冊未滿3個月</span>';
+                        update_user_meta($user_id, 'goal_gg', strip_tags($output));
+                        return $output;
                     }
                 }
 

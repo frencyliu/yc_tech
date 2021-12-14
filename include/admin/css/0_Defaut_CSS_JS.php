@@ -16,10 +16,9 @@ class _CSS_JS extends YC_TECH
     public function __construct()
     {
         add_action('admin_enqueue_scripts', [$this, 'yc_enqueue_admin_css'], 100);
-        add_action('wp_enqueue_scripts', [$this, 'yc_enqueue_front_css'], 100);
         add_action('admin_footer', [$this, 'yc_enqueue_admin_js'], 100);
         add_action('admin_footer', [$this, 'yc_footer_js'], 101);
-        add_action('wp_enqueue_scripts', [$this, 'yc_enqueue_front_js'], 100);
+
     }
 
     public function yc_enqueue_admin_css()
@@ -45,36 +44,9 @@ class _CSS_JS extends YC_TECH
         }
     }
 
-    public function yc_enqueue_front_css()
-    {
-        wp_enqueue_style('YC_TECH front css', plugins_url('/../../../assets/css/yc_front_level_' . self::$current_user_level . '.css', __FILE__), array(), '1.0.1');
 
-        if (FA_ENABLE) {
-            wp_enqueue_style('fontawesome_css', plugins_url('/../../../assets/fontawesome/css/all.min.css', __FILE__));
-        }
-        if (FLIPSTER_ENABLE) {
-            wp_enqueue_style('flipster_css', plugins_url('/../../../assets/flipster/jquery.flipster.min.css', __FILE__));
-        }
-        if (SLICK_ENABLE) {
-            wp_enqueue_style('slick-theme_css', plugins_url('/../../../assets/slick/slick-theme.css', __FILE__));
-            wp_enqueue_style('slick_css', plugins_url('/../../../assets/slick/slick.css', __FILE__));
-        }
-    }
 
-    public function yc_enqueue_front_js()
-    {
-        wp_enqueue_script('Lottie js', 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js');
-        wp_enqueue_script('YC_TECH front js', plugins_url('/../../../assets/js/yc_front.js', __FILE__));
-        if (FA_ENABLE) {
-            wp_enqueue_script('fontawesome_js',  plugins_url('/../../../assets/fontawesome/js/all.min.js', __FILE__));
-        }
-        if (FLIPSTER_ENABLE) {
-            wp_enqueue_script('flipster_js', plugins_url('/../../../assets/flipster/jquery.flipster.min.js', __FILE__));
-        }
-        if (SLICK_ENABLE) {
-            wp_enqueue_script('slick_js', plugins_url('/../../../assets/slick/slick.min.js', __FILE__));
-        }
-    }
+
 
     function yc_footer_js()
     {

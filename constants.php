@@ -17,6 +17,7 @@ class _Const extends YC_TECH
             if (!defined('BET')) define('BET', false);
 
             define('YC_ROOT_DIR', plugin_dir_path( __FILE__ ));
+            define('YC_ROOT_URL', plugin_dir_url( __FILE__ ));
 
 
             if (!defined('IS_WC')) define('IS_WC', class_exists('WooCommerce', false));
@@ -41,6 +42,12 @@ class _Const extends YC_TECH
             //可以改寫成用到再載入
             if (!defined('FLIPSTER_ENABLE')) define('FLIPSTER_ENABLE', false);
             if (!defined('SLICK_ENABLE')) define('SLICK_ENABLE', false);
+            if (!defined('ANIMATE_CSS_ENABLE')) define('ANIMATE_CSS_ENABLE', false);
+            if (!defined('ANIMATE_JS_ENABLE')) define('ANIMATE_JS_ENABLE', false);
+            if (!defined('THREE_JS_ENABLE')) define('THREE_JS_ENABLE', false);
+
+
+
             //是否啟用擴充模組
             if (!defined('EXTENSIONS_ENABLE')) define('EXTENSIONS_ENABLE', false);
 

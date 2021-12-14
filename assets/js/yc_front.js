@@ -12,7 +12,7 @@ jQuery(document).ready(function () {
                 jQuery("#billing_address_1_field").slideUp().find('input[name^="billing_"]').val("超商取貨");
             } else {
                 jQuery("#billing_postcode_field").slideDown();
-                jQuery("#billing_address_1_field").slideDown();
+                jQuery("#billing_address_1_field").slideDown().find('input[name^="billing_"]').val("");
             }
         }
     });

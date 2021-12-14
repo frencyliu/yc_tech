@@ -20,10 +20,9 @@ class YCWC_Override extends YC_TECH
         add_action('init', [$this, 'init']);
         //Override Woocommerce template
         add_filter('woocommerce_locate_template', [$this, 'yc_override_woocommerce_template'], 99, 3);
-        //移除產品連結，改成加入購物車
-        if (!YCWC_LINK_TO_PRODUCT) {
-            add_action('after_setup_theme', [$this, 'yc_remove_product_link'], 98);
-        }
+
+        add_action('after_setup_theme', [$this, 'yc_remove_product_link'], 98);
+
         //移除my account選單
         add_filter('woocommerce_account_menu_items', [$this, 'yc_custom_my_account'], 99);
 
@@ -76,23 +75,31 @@ class YCWC_Override extends YC_TECH
 
     public function yc_remove_product_link()
     {
-        //移除產品連結
-        remove_action(
-            'woocommerce_before_shop_loop_item',
-            'woocommerce_template_loop_product_link_open',
-            10
-        );
-        remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
 
-        //改成加入購物車
-        add_action(
-            'woocommerce_before_shop_loop_item',
-            function () {
-                global $product;
-                echo '<a href="?add-to-cart=105" data-quantity="1" class="show_cart add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_ID() . '" >';
-            },
-            10
-        );
+        //移除產品連結，改成加入購物車
+        if (!YCWC_LINK_TO_PRODUCT) {
+            //移除產品連結
+            remove_action(
+                'woocommerce_before_shop_loop_item',
+                'woocommerce_template_loop_product_link_open',
+                10
+            );
+            remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
+
+            //改成加入購物車
+            add_action(
+                'woocommerce_before_shop_loop_item',
+                function () {
+                    global $product;
+                    echo '<a href="?add-to-cart=105" data-quantity="1" class="show_cart add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_ID() . '" >';
+                },
+                10
+            );
+        }
+        //移除coupon
+        remove_action('woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10);
+        //改位置
+        add_action('woocommerce_checkout_order_review', 'woocommerce_checkout_coupon_form', 100);
     }
 }
 new YCWC_Override();

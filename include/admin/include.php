@@ -9,7 +9,7 @@ require_once __DIR__ . '/user/0_Defaut_User.php';
 require_once __DIR__ . '/row_action/0_Defaut_Row_Action.php';
 require_once __DIR__ . '/metabox/0_Defaut_Metabox.php';
 require_once __DIR__ . '/notice/0_Defaut_Notice.php';
-
+require_once __DIR__ . '/integrate/include.php';
 
 
 if(class_exists('WooCommerce', false)){

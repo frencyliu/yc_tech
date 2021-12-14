@@ -68,7 +68,7 @@ class Custom_Admin extends YC_TECH
 
         add_action('init', [$this, 'remove_admin_bar']);
 
-        add_filter('bogo_localizable_post_types', [$this, 'yc_bogo_support_for_custom_post_types'], 10, 1);
+
 
 
         //redirect when user access wp-admin/
@@ -102,21 +102,7 @@ class Custom_Admin extends YC_TECH
 
 
 
-    /**
-     * Support custom post type with bogo.
-     * @param array $ locallyizable Supported post types.
-     */
-    public function yc_bogo_support_for_custom_post_types($localizable)
-    {
-        if (class_exists('Bogo_POMO', false)) {
-            $args = array(
-                'public' => true,
-                '_builtin' => false,
-            );
-            $custom_post_types = get_post_types($args);
-            return array_merge($localizable, $custom_post_types);
-        }
-    }
+
 
 
 
@@ -212,7 +198,7 @@ class Custom_Admin extends YC_TECH
 
             update_option('admin2020_settings', $admin2020_options);
             //social login
-            update_option('the_champ_login', $the_champ_login);
+            //update_option('the_champ_login', $the_champ_login);
         } else {
             if ($admin2020_options['modules']['admin2020_admin_bar']['light-logo'] == wp_get_attachment_image_url($yc_site_logo, 'large') && $admin2020_options['modules']['admin2020_admin_login']['login-background'] == wp_get_attachment_image_url($yc_login_bg, 'full')) {
                 // do nothing
@@ -281,6 +267,9 @@ class Custom_Admin extends YC_TECH
     public function yc_add_wp_head()
     {
 ?>
+        <!--Disable Safari support-->
+        <meta name="format-detection" content="telephone=no">
+
         <?php if (!empty(get_option('yc_ga_track'))) : ?>
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo get_option('yc_ga_track'); ?>"></script>

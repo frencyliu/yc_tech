@@ -25,7 +25,6 @@ class _General extends YC_TECH
     {
         //login form
         add_shortcode('yc_login_form', [$this, 'yc_login_form_function' ]);
-
         add_shortcode('get_monthly_sales', [$this, 'get_monthly_sales_f']);
         add_shortcode('get_last_monthly_sales', [$this, 'get_last_monthly_sales_f']);
         add_shortcode('get_dates_sales', [$this, 'get_dates_sales_f']);

@@ -132,7 +132,7 @@ class _Game_Setting extends \yc_AdminPageFramework_MetaBox
                 ),
             ),
             array(
-                'field_id'      => 'team2_group',
+                'field_id'      => 'teamB_group',
                 'type'          => 'inline_mixed',
                 'content'    => array(
                     array(

@@ -1,7 +1,7 @@
 #/bin/bash
 
 git add .
-git commit -m 'reorder menu, fix include'
+git commit -m 'add animate js css three js'
 
 git push origin DEV
 
