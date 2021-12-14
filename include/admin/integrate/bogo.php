@@ -78,7 +78,7 @@ class _bogo extends YC_TECH
     });
 
 </script>
-<?
+<?php
     }
 
     /**
@@ -96,5 +96,4 @@ class _bogo extends YC_TECH
             return array_merge($localizable, $custom_post_types);
     }
 }
-
 new _bogo();
