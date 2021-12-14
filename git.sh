@@ -1,7 +1,7 @@
 #/bin/bash
 
 git add .
-git commit -m 'bogo integration'
+git commit -m 'three js integration'
 
 git push origin DEV
 

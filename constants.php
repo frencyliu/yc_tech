@@ -46,6 +46,9 @@ class _Const extends YC_TECH
             if (!defined('ANIMATE_JS_ENABLE')) define('ANIMATE_JS_ENABLE', false);
             if (!defined('THREE_JS_ENABLE')) define('THREE_JS_ENABLE', false);
 
+            if(THREE_JS_ENABLE) define('THREE_JS_DIR_URL', site_url() . '/wp-content/themes/picostrap5-child-base/library/three.js');
+
+
 
 
             //是否啟用擴充模組
