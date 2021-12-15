@@ -119,11 +119,11 @@ foreach ($all_post_types as $post_type) {
         $post_type,
         'side'
     );
-    remove_meta_box(
+    /*remove_meta_box(
         'pageparentdiv',
         $post_type,
         'side'
-    );
+    );*/
 
     /*remove_meta_box(
         'slugdiv',//代稱

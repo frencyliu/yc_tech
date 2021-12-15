@@ -1,7 +1,7 @@
 #/bin/bash
 
 git add .
-git commit -m 'three js integration'
+git commit -m 'readd pageparentdiv metabox'
 
 git push origin DEV
 
