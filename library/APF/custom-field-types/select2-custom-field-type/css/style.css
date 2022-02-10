@@ -1,19 +1,19 @@
-.YC_TECH-field-select2 .select2-container {
+.yc_tech-field-select2 .select2-container {
     min-width: 200px;
     width: auto;
 }
 
-.YC_TECH-field-select2 {
+.yc_tech-field-select2 {
     max-width: 96%;
 }
 
 /* Make a room for repeatable buttons */
-.repeatable .YC_TECH-field-select2 > .YC_TECH-select-label > label > .YC_TECH-input-container {
+.repeatable .yc_tech-field-select2 > .yc_tech-select-label > label > .yc_tech-input-container {
     max-width: 84%;
 }
 
 /* Custom Icons */
-.YC_TECH-field-select2 .custom-icon-definitions {
+.yc_tech-field-select2 .custom-icon-definitions {
     display: none;
 }
 .select2-custom-icon-container {

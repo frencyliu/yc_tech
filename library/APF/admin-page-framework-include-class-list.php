@@ -322,11 +322,7 @@ $aClassFiles = array(
     "yc_AdminPageFramework_Factory_Model"=> yc_AdminPageFramework_Registry::$sDirPath . "/factory/_common/_abstract/AdminPageFramework_Factory.php", 
     "yc_AdminPageFramework_Factory_View"=> yc_AdminPageFramework_Registry::$sDirPath . "/factory/_common/_abstract/AdminPageFramework_Factory.php", 
     "yc_AdminPageFramework_Factory_Controller"=> yc_AdminPageFramework_Registry::$sDirPath . "/factory/_common/_abstract/AdminPageFramework_Factory.php", 
-    "yc_AceCustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/ace-custom-field-type/AceCustomFieldType.php",
-    "yc_GitHubCustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/github-custom-field-type/GitHubCustomFieldType.php",
-    "yc_PathCustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/path-custom-field-type/PathCustomFieldType.php",
     "yc_ToggleCustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/toggle-custom-field-type/ToggleCustomFieldType.php",
-    "yc_NoUISliderCustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/nouislider-custom-field-type/NoUISliderCustomFieldType.php",
     "yc_Select2CustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/select2-custom-field-type/Select2CustomFieldType.php",
     "yc_PostTypeTaxonomyCustomFieldType" => yc_AdminPageFramework_Registry::$sDirPath . "/custom-field-types/post_type_taxonomy_field-type/PostTypeTaxonomyCustomFieldType.php",
 );

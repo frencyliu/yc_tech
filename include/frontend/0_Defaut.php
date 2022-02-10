@@ -18,7 +18,7 @@ class _Default extends YC_TECH
     {
         add_action('wp_enqueue_scripts', [$this, 'yc_enqueue_front_css'], 100);
         add_action('wp_enqueue_scripts', [$this, 'yc_enqueue_front_js'], 100);
-
+        add_action('init', [$this, 'yc_maintainance_mode'], 100);
     }
 
     public function yc_enqueue_front_css()
@@ -63,10 +63,17 @@ class _Default extends YC_TECH
         if (THREE_JS_ENABLE) {
             wp_enqueue_script('three_js', YC_ROOT_URL . '/assets/threejs/three.js');
         }
-
-
     }
 
+    function yc_maintainance_mode()
+    {
+        if(!MAINTAINANCE_MODE) return;
+        if ((strpos($_SERVER['REQUEST_URI'], 'wp-admin') == false) && (strpos($_SERVER['REQUEST_URI'], 'wp-login') == false)) {
+            if (!is_user_logged_in()) {
+                wp_die('NOT Allow to visit please Login', 'Access Deny');
+            }
+        }
+    }
 
 }
 new _Default();

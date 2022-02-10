@@ -150,7 +150,22 @@ figure {
 fieldset div[class*="-input-label-container"]{
     text-align: left;
 }
-
+.yc_tech-input-label-container.yc_tech-select-label,
+.yc_tech-input-label-container.yc_tech-select-label label,
+.yc_tech-input-label-container.yc_tech-select-label span,
+.yc_tech-input-label-container.yc_tech-select-label select{
+    width:100%;
+}
+/*
+div[class*="yc_tech"] input,
+.yc_tech-section .form-table td label,
+.yc_tech-input-label-container, .yc_tech-input-label-string,
+.postbox .yc_tech-field,
+.yc_tech-fields
+{
+    width: calc( 100% - 70px ) !important;
+}
+*/
 
 /*自訂結帳欄位*/
 #wpbody-content > div.wrap > div.thwcfd-wrap > div.wrap.woocommerce {

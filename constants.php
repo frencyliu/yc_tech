@@ -16,6 +16,8 @@ class _Const extends YC_TECH
     {
             if (!defined('BET')) define('BET', false);
 
+
+            if (!defined('MAINTAINANCE_MODE')) define('MAINTAINANCE_MODE', false);
             define('YC_ROOT_DIR', plugin_dir_path( __FILE__ ));
             define('YC_ROOT_URL', plugin_dir_url( __FILE__ ));
 
@@ -37,6 +39,7 @@ class _Const extends YC_TECH
             if (!defined('VIDEO_CPT')) define('VIDEO_CPT', false);//設分類為單選
 
 
+
             if (!defined('ROW_ACTION_ENABLE')) define('ROW_ACTION_ENABLE', false);
 
             //可以改寫成用到再載入
@@ -53,6 +56,11 @@ class _Const extends YC_TECH
 
             //是否啟用擴充模組
             if (!defined('EXTENSIONS_ENABLE')) define('EXTENSIONS_ENABLE', false);
+
+
+            //
+            $img_url = get_stylesheet_directory_uri() . '/assets/img';
+            define('IMG_URL', $img_url);
 
     }
 

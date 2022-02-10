@@ -136,8 +136,8 @@ class yc_ToggleCustomFieldType extends yc_AdminPageFramework_FieldType_checkbox 
             jQuery( '.switch_toggle_buttons' ).each( function () {
                 
                 // Hide the actual check-box.
-                jQuery( this ).closest( '.YC_TECH-field' )
-                    .children( '.YC_TECH-checkbox-container-toggle' )
+                jQuery( this ).closest( '.yc_tech-field' )
+                    .children( '.yc_tech-checkbox-container-toggle' )
                     .hide();
                     
                 _initalizeToggles( this );

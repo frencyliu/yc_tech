@@ -314,7 +314,7 @@ class _Menu extends YC_TECH
         );
 
 
-
+        if(self::$current_user_level < 2){
         add_menu_page(
             'BOOTSTRAP 變數設定',
             'BOOTSTRAP 變數設定',
@@ -324,6 +324,7 @@ class _Menu extends YC_TECH
             'dashicons-admin-appearance',
             6
         );
+    }
 
 
 

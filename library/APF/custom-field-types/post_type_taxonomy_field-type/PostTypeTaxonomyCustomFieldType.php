@@ -136,20 +136,20 @@ class yc_PostTypeTaxonomyCustomFieldType extends yc_AdminPageFramework_FieldType
 jQuery( document ).ready( function(){
     
     // Add the select all and none buttons.
-    jQuery( '.YC_TECH-checkbox-container-posttype[data-select_all_button]' ).each( function( iIndex ){
+    jQuery( '.yc_tech-checkbox-container-posttype[data-select_all_button]' ).each( function( iIndex ){
         jQuery( this ).before( '<div class=\"select_all_button_container\" onclick=\"jQuery( this ).selectAllyc_AdminPageFrameworkCheckboxes(); return false;\"><a class=\"select_all_button button button-small\">' + jQuery( this ).data( 'select_all_button' ) + '</a></div>' );
     });            
-    jQuery( '.YC_TECH-checkbox-container-posttype[data-select_none_button]' ).each( function( iIndex ){
+    jQuery( '.yc_tech-checkbox-container-posttype[data-select_none_button]' ).each( function( iIndex ){
         jQuery( this ).before( '<div class=\"select_none_button_container\" onclick=\"jQuery( this ).deselectAllyc_AdminPageFrameworkCheckboxes(); return false;\"><a class=\"select_all_button button button-small\">' + jQuery( this ).data( 'select_none_button' ) + '</a></div>' );
     });
     
     // When the post type check-boxes are clicked, show/hide the corresponding taxonomy elements.
-    jQuery( document ).on( 'change', '.YC_TECH-field-post_type_taxonomy .YC_TECH-field-posttype input[type="checkbox"]', function() {
+    jQuery( document ).on( 'change', '.yc_tech-field-post_type_taxonomy .yc_tech-field-posttype input[type="checkbox"]', function() {
         var _sPostTypeSlug       = jQuery( this ).data( 'key' );
         var _sTargetTabsSelector = '.tab-box-container li.tab-box-tab[data-associated-post-types*="' + _sPostTypeSlug + ',"]';
         var _sTargetCBContainers = '.tab-box-content[data-associated-post-types*="' + _sPostTypeSlug + ',"]';
         var _sTabsBoxSelector    = '.tab-box-container';
-        var _oField              = jQuery( this ).closest( '.YC_TECH-field-post_type_taxonomy' );
+        var _oField              = jQuery( this ).closest( '.yc_tech-field-post_type_taxonomy' );
         var _oTargetTabs         = _oField.find( _sTargetTabsSelector );                
         var _oTargetCBContainers = _oField.find( _sTargetCBContainers );
         if ( jQuery( this ).is( ':checked' ) ) {            
@@ -194,7 +194,7 @@ jQuery( document ).ready( function(){
     });
     
     // Hide the unchecked elements (tabs and check-box containers).
-    jQuery( '.YC_TECH-field-post_type_taxonomy .YC_TECH-field-posttype input[type="checkbox"]:not(:checked)' ).each( function(){
+    jQuery( '.yc_tech-field-post_type_taxonomy .yc_tech-field-posttype input[type="checkbox"]:not(:checked)' ).each( function(){
         jQuery( this ).trigger( 'change' );
     } );
     
@@ -206,7 +206,7 @@ jQuery( document ).ready( function(){
         repeated_field: function( oCloned, aModel ) {
 
             // Uncheck all the items and hide the associated elements (tabs and check-box containers).
-            oCloned.find( '.YC_TECH-field-posttype input[type="checkbox"]' )
+            oCloned.find( '.yc_tech-field-posttype input[type="checkbox"]' )
                 .prop( 'checked', false )
                 .trigger( 'change' );         
                         
@@ -228,8 +228,8 @@ JAVASCRIPTS;
     protected function getStyles() {
         return parent::getStyles()
             . " /* Select All and None Buttons */
-.YC_TECH-field-post_type_taxonomy .select_all_button_container, 
-.YC_TECH-field-post_type_taxonomy .select_none_button_container
+.yc_tech-field-post_type_taxonomy .select_all_button_container, 
+.yc_tech-field-post_type_taxonomy .select_none_button_container
 {
     display: inline-block;  /* 3.8.8+ For post_type_taxonomy field type */
     margin-bottom: 1em;
@@ -240,7 +240,7 @@ JAVASCRIPTS;
     margin-bottom: 0;
 }
 
-.YC_TECH-field-post_type_taxonomy .select-taxonomy-terms-checkbox-container {
+.yc_tech-field-post_type_taxonomy .select-taxonomy-terms-checkbox-container {
     display: inline-block;
     margin: 1em 0;
 }
@@ -393,7 +393,7 @@ JAVASCRIPTS;
                     . "<label class='select-taxonomy-terms'>"
                         . "<input " . $this->getAttributes( $_aHiddenAttributes ) . " />"
                         . "<input " . $this->getAttributes( $_aCheckboxAttributes ) . " />"
-                            . __( 'Select taxonomy terms.', 'YC_TECH-loader' )
+                            . __( 'Select taxonomy terms.', 'yc_tech-loader' )
                     . "</label>"
                 . "</div>";
 

@@ -211,13 +211,13 @@
          * the width on drop-down list does take effect.
          */
         if ( _aOptions[ 'width' ] && 'auto' !== _aOptions[ 'width' ] ) {
-            var _oFieldContainer = _oSelect2Target.closest( '.YC_TECH-field-select2' );
+            var _oFieldContainer = _oSelect2Target.closest( '.yc_tech-field-select2' );
             _oFieldContainer.css( 'width', _aOptions[ 'width' ] );
-            _oFieldContainer.children( '.YC_TECH-select-label' )
+            _oFieldContainer.children( '.yc_tech-select-label' )
                 .css( 'width', '100%' );
-            _oFieldContainer.children( '.YC_TECH-select-label' )
+            _oFieldContainer.children( '.yc_tech-select-label' )
                 .children( 'label' )
-                .children( '.YC_TECH-input-container' )
+                .children( '.yc_tech-input-container' )
                 .css( 'width', '100%' );
             _aOptions[ 'width' ] = '100%';
         }
@@ -244,7 +244,7 @@
             /**
              * Set initial values.
              */
-            var _oInputForEncoded = _oSelect2Target.closest( '.YC_TECH-field' )
+            var _oInputForEncoded = _oSelect2Target.closest( '.yc_tech-field' )
                 .children( 'input[data-encoded]' ).first();
             var _sData = _oInputForEncoded.val();
             if ( _sData ) {
@@ -294,7 +294,7 @@
                 } );
 
                 // Set the encoded value.
-                $( this ).closest( '.YC_TECH-field' )
+                $( this ).closest( '.yc_tech-field' )
                     .children( 'input[data-encoded]' ).first()
                     .val( JSON.stringify( _aValues ) );
 
@@ -330,7 +330,7 @@
     }
 
     function templateResultForIcon( state ) {
-        var _oIconDefinition = $( state.element ).closest( '.YC_TECH-field' ).find( '.custom-icon-definition[data-value=' + state.id + ']' );
+        var _oIconDefinition = $( state.element ).closest( '.yc_tech-field' ).find( '.custom-icon-definition[data-value=' + state.id + ']' );
         if ( _oIconDefinition.length ) {
             return $( "<span class='select2-custom-icon-container'><span class='select2-custom-icon'>" + _oIconDefinition.html() + "</span><span class='select2-custom-icon-label'>" + state.text + "</span></span>" ) ;
         }
