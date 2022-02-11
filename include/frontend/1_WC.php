@@ -16,7 +16,7 @@ class _WC extends YC_TECH
 
     public function __construct()
     {
-        add_action('wp_footer', [$this, 'yc_login_logic'], 100);
+        //add_action('wp_footer', [$this, 'yc_login_logic'], 100);
 
         add_filter( 'body_class', function( $classes ) {
             if (is_user_logged_in()) return $classes;

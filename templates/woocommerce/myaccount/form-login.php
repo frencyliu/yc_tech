@@ -45,7 +45,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 				<input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password" />
 			</p>
             <p class="woocommerce-LostPassword lost_password">
-                <a href="<?php echo site_url(); ?>/register/">註冊</a>
+                <a href="<?php echo site_url(); ?>/register/"><?php esc_html_e('Register', 'YC_TECH'); ?></a>
 				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
 			</p>
 
@@ -62,7 +62,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
 
-            <p class="woocommerce-register"><a href="<?php echo site_url(); ?>/register/">沒有帳號嗎？來註冊一個吧！</a></p>
+            <p class="woocommerce-register"><a href="<?php echo site_url(); ?>/register/"><?php esc_html_e('Regist an account', 'YC_TECH'); ?></a></p>
 
 		</form>
 

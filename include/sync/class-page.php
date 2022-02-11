@@ -74,7 +74,7 @@ class Page extends YC_TECH
                 ?>
 
                 <form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action('woocommerce_register_form_tag'); ?>>
-                    <h2 class="yc_login_form_title">註冊</h2>
+                    <h2 class="yc_login_form_title"><?php esc_html_e('REGISTER', 'YC_TECH'); ?></h2>
 
                     <?php do_action('woocommerce_register_form_start'); ?>
 
@@ -108,33 +108,29 @@ class Page extends YC_TECH
                         <input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>" />
                     </p>
 
+
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="reg_billing_first_name"><?php esc_html_e('姓名', 'YC_TECH'); ?> <span class="required">*</span></label>
-                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_first_name" id="reg_billing_first_name" autocomplete="billing_first_name" value="<?php echo (!empty($_POST['billing_first_name'])) ? esc_attr(wp_unslash($_POST['billing_first_name'])) : ''; ?>" />
+                        <label for="reg_gender"><?php esc_html_e('Gender', 'YC_TECH'); ?> <span class="required">*</span></label>
+                        <input type="radio" id="male" name="male" value="male"> <?php esc_html_e('Male', 'YC_TECH'); ?>
+                        <input type="radio" id="female" name="female" value="female"> <?php esc_html_e('Female', 'YC_TECH'); ?>
                     </p>
 
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="reg_gender"><?php esc_html_e('性別', 'YC_TECH'); ?> <span class="required">*</span></label>
-                        <input type="radio" id="male" name="male" value="male"> 男
-                        <input type="radio" id="female" name="female" value="female"> 女
-                    </p>
-
-                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="reg_billing_phone"><?php esc_html_e('手機', 'YC_TECH'); ?> <span class="required">*</span></label>
+                        <label for="reg_billing_phone"><?php esc_html_e('Phone', 'YC_TECH'); ?> <span class="required">*</span></label>
                         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_phone" id="reg_billing_phone" autocomplete="billing_phone" value="<?php echo (!empty($_POST['billing_phone'])) ? esc_attr(wp_unslash($_POST['billing_phone'])) : ''; ?>" />
                     </p>
 
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="reg_birthday"><?php esc_html_e('生日', 'YC_TECH'); ?> <span class="required">*</span></label>
+                        <label for="reg_birthday"><?php esc_html_e('Birthday', 'YC_TECH'); ?> <span class="required">*</span></label>
                         <input type="date" class="woocommerce-Input woocommerce-Input--text input-text" name="birthday" id="reg_birthday" autocomplete="birthday" value="<?php echo (!empty($_POST['birthday'])) ? esc_attr(wp_unslash($_POST['birthday'])) : ''; ?>" />
                     </p>
 
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                        <label for="reg_billing_address_1"><?php esc_html_e('地址', 'YC_TECH'); ?> <span class="required">*</span></label>
+                        <label for="reg_billing_address_1"><?php esc_html_e('Address', 'YC_TECH'); ?> <span class="required">*</span></label>
                         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_address_1" id="reg_billing_address_1" autocomplete="billing_address_1" value="<?php echo (!empty($_POST['billing_address_1'])) ? esc_attr(wp_unslash($_POST['billing_address_1'])) : ''; ?>" />
                     </p>
 
-                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                    <!--p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_how_to_know_us"><?php esc_html_e('如何得知我們', 'YC_TECH'); ?> <span class="required">*</span></label>
 
                         <select class="woocommerce-Input woocommerce-Input--select input-select" name="how_to_know_us" id="reg_how_to_know_us" autocomplete="how_to_know_us" value="<?php echo (!empty($_POST['how_to_know_us'])) ? esc_attr(wp_unslash($_POST['how_to_know_us'])) : ''; ?>">
@@ -154,7 +150,7 @@ class Page extends YC_TECH
                             <option value="moto_vendor">機車行/汽車量販店</option>
                             <option value="other">其他</option>
                         </select>
-                    </p>
+                    </p-->
 
                     <?php do_action('woocommerce_register_form'); ?>
 
