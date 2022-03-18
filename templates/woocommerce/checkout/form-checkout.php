@@ -35,11 +35,12 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
     <?php if ($checkout->get_checkout_fields()) : ?>
 
         <?php do_action('woocommerce_checkout_before_customer_details'); ?>
-        <h3 class="yc_billing_detail_heading">帳單資訊</h3>
+
         <div class="col2-set" id="customer_details">
             <div class="col-1">
                 <?php do_action('woocommerce_checkout_billing'); ?>
             </div>
+
 
             <div class="col-2">
                 <?php do_action('woocommerce_checkout_shipping'); ?>
@@ -57,12 +58,14 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
     <?php do_action('woocommerce_checkout_before_order_review'); ?>
 
+    <h3 class="yc_billing_detail_heading">帳單資訊</h3>
+    <?php do_action('woocommerce_checkout_after_order_review'); ?>
+
     <div id="order_review" class="woocommerce-checkout-review-order">
         <?php do_action('woocommerce_checkout_order_review'); ?>
     </div>
 
 
-    <?php do_action('woocommerce_checkout_after_order_review'); ?>
 
 </form>
 
@@ -158,14 +161,23 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
     form.checkout.woocommerce-checkout {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    h3.order_review_heading{
+        order: 0;
+    }
+    .yc_billing_detail_heading{
+        order: 2;
     }
 
     form.checkout.woocommerce-checkout #customer_details {
-        order: 2;
+        order: 3;
         width: 100% !important;
         float: none !important;
         margin-right: 0 !important;
+    }
+    #payment{
+        order: 4;
     }
 
     form.checkout.woocommerce-checkout #order_review {

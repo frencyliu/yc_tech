@@ -1,9 +1,6 @@
 jQuery(document).ready(($) => {
     let path = window.location.pathname + window.location.search;
 
-
-
-
     /**
      * 預設註冊後不寄送信件
      */

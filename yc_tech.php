@@ -47,7 +47,7 @@ if (!class_exists('YC_TECH')) {
 
             //add_action('admin_head', [ $this, 'test' ]);
             add_action('init', [$this, 'yc_get_current_user_level']);
-            add_action('init', [$this, 'yc_set_default']);
+            add_action('admin_head', [$this, 'yc_set_default']);
 
             //預設wp statistics 最多保存365天數據
             add_filter('wp_statistics_option_schedule_dbmaint', function () {
@@ -62,7 +62,6 @@ if (!class_exists('YC_TECH')) {
 
             //DEBUG
             add_action('admin_head', [$this, 'DEBUG']);
-
         }
 
         static public function DEBUG($variable, $show_anyway = false)
@@ -93,7 +92,8 @@ if (!class_exists('YC_TECH')) {
             endif;
         }
 
-        static public function DEBUG_output($variable){
+        static public function DEBUG_output($variable)
+        {
             echo '<div class="yc_debug"><pre>';
             var_dump($variable);
             echo '</pre></div>';
@@ -112,17 +112,17 @@ if (!class_exists('YC_TECH')) {
             } else {
                 //如果已登入，就判斷使用者腳色
                 //如果在許可名單內，繼續，並加上body class
-                    add_filter('body_class', function ($classes) {
-                        array_push($classes, 'is_login');
-                        return $classes;
-                    }, 200);
+                add_filter('body_class', function ($classes) {
+                    array_push($classes, 'is_login');
+                    return $classes;
+                }, 200);
             }
         }
         static public function yc_login_template()
         {
             echo '<div class="woocommerce">';
-            //wc_get_template('myaccount/form-login.php');
-            load_template( __DIR__ . '/templates/woocommerce/myaccount/form-login.php');
+            wc_get_template('myaccount/form-login.php');
+            //load_template( __DIR__ . '/templates/woocommerce/myaccount/form-login.php');
             echo '</div>';
             //登入後跳轉
             add_filter('woocommerce_login_redirect', function () {
@@ -148,15 +148,23 @@ if (!class_exists('YC_TECH')) {
             update_option('thumbnail_crop', '');
 
             //WC
-            if(IS_WC){
-            update_option('woocommerce_allow_tracking', 'no');
-            update_option('woocommerce_show_marketplace_suggestions', 'no');
-        }
+            if (IS_WC) {
+                update_option('woocommerce_allow_tracking', 'no');
+                update_option('woocommerce_show_marketplace_suggestions', 'no');
+            }
 
             //修改WP Statistics Read capability權限
             add_filter("wp_statistics_option_read_capability", function () {
                 return 'read';
             }, 99, 1);
+
+            $wp_roles = new WP_Roles();
+            $wp_roles->roles['administrator']['name'] = '至高無上的存在';
+            remove_role('author');
+            remove_role('contributor');
+            remove_role('subscriber');
+            remove_role('translator');
+
         }
 
 
@@ -226,17 +234,17 @@ if (class_exists('YC_TECH')) {
     $YC_TECH = new YC_TECH();
 }
 
-require_once(__DIR__ . '/constants.php');
-require_once(__DIR__ . '/library/APF/admin-page-framework.php' );
-require_once( __DIR__ . '/library/APF_Frontend_Form/admin-page-framework-frontend-form-beta.php' );
+include(__DIR__ . '/constants.php');
+include(__DIR__ . '/library/APF/admin-page-framework.php');
+include(__DIR__ . '/library/APF_Frontend_Form/admin-page-framework-frontend-form-beta.php');
 
-require_once(__DIR__ . '/class-Override.php');
-require_once(__DIR__ . '/include/admin/include.php');
-require_once(__DIR__ . '/include/frontend/include.php');
-require_once(__DIR__ . '/include/sync/sync.php');
-require_once(__DIR__ . '/include/shortcode/include.php');
-require_once(__DIR__ . '/include/oneshop/oneshop.php');
-require_once(__DIR__ . '/include/extensions/extensions.php');
+include(__DIR__ . '/class-Override.php');
+include(__DIR__ . '/include/admin/include.php');
+include(__DIR__ . '/include/frontend/include.php');
+include(__DIR__ . '/include/sync/sync.php');
+include(__DIR__ . '/include/shortcode/include.php');
+include(__DIR__ . '/include/oneshop/oneshop.php');
+include(__DIR__ . '/include/extensions/extensions.php');
 
 
 //!!! FRONT END FORM!!!

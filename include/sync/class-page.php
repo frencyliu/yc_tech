@@ -22,6 +22,22 @@ class Page extends YC_TECH
         add_action('admin_head', [$this, 'yc_create_default_page']);
         add_action('admin_head', [$this, 'yc_hide_post']);
         add_action('init', [$this, 'yc_add_shortcode']);
+
+        add_action('wp_enqueue_scripts', [$this, 'yc_add_scripts']);
+
+        add_action( 'woocommerce_created_customer', [$this, 'wooc_save_extra_register_fields' ] );
+    }
+
+    function wooc_save_extra_register_fields( $customer_id ) {
+        if ( isset( $_POST['billing_phone'] ) ) {
+                     update_user_meta( $customer_id, 'billing_phone', sanitize_text_field( $_POST['billing_phone'] ) );
+              }
+          if ( isset( $_POST['gender'] ) ) {
+                 update_user_meta( $customer_id, 'gender', sanitize_text_field( $_POST['gender'] ) );
+          }
+          if ( isset( $_POST['birthday'] ) ) {
+                 update_user_meta( $customer_id, 'birthday', sanitize_text_field( $_POST['birthday'] ) );
+          }
     }
 
     function yc_create_default_page()
@@ -78,7 +94,7 @@ class Page extends YC_TECH
 
                     <?php do_action('woocommerce_register_form_start'); ?>
 
-                    <?php if ('no' === get_option('woocommerce_registration_generate_username')) : ?>
+                    <?php //if ('no' === get_option('woocommerce_registration_generate_username')) : ?>
 
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                             <label for="reg_username"><?php esc_html_e('Username', 'woocommerce'); ?> <span class="required">*</span></label>
@@ -86,49 +102,52 @@ class Page extends YC_TECH
                                                                                                                                                                                                                                                                             ?>
                         </p>
 
-                    <?php endif; ?>
+                    <?php //endif; ?>
 
 
 
-                    <?php if ('no' === get_option('woocommerce_registration_generate_password')) : ?>
 
-                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label for="reg_password"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
-                            <input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" />
-                        </p>
 
-                    <?php else : ?>
 
-                        <p><?php esc_html_e('A password will be sent to your email address.', 'woocommerce'); ?></p>
 
-                    <?php endif; ?>
 
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_email"><?php esc_html_e('Email address', 'woocommerce'); ?> <span class="required">*</span></label>
                         <input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" autocomplete="email" value="<?php echo (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>" />
                     </p>
 
+                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                        <label for="reg_password"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
+                        <input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" />
+                    </p>
+
+                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                        <label for="reg_phone"><?php esc_html_e('Phone', 'YC_TECH'); ?> <span class="required">*</span></label>
+                        <input type="tel" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_phone" id="reg_phone" autocomplete="billing_phone" value="<?php echo (!empty($_POST['billing_phone'])) ? esc_attr(wp_unslash($_POST['billing_phone'])) : ''; ?>" />
+                    </p>
 
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_gender"><?php esc_html_e('Gender', 'YC_TECH'); ?> <span class="required">*</span></label>
-                        <input type="radio" id="male" name="male" value="male"> <?php esc_html_e('Male', 'YC_TECH'); ?>
-                        <input type="radio" id="female" name="female" value="female"> <?php esc_html_e('Female', 'YC_TECH'); ?>
+                        <input type="radio" id="male" name="gender" value="male"> <?php esc_html_e('Male', 'YC_TECH'); ?>
+                        <input type="radio" id="female" name="gender" value="female"> <?php esc_html_e('Female', 'YC_TECH'); ?>
                     </p>
 
-                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                    <!--p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_billing_phone"><?php esc_html_e('Phone', 'YC_TECH'); ?> <span class="required">*</span></label>
                         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_phone" id="reg_billing_phone" autocomplete="billing_phone" value="<?php echo (!empty($_POST['billing_phone'])) ? esc_attr(wp_unslash($_POST['billing_phone'])) : ''; ?>" />
-                    </p>
+                    </p-->
 
                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_birthday"><?php esc_html_e('Birthday', 'YC_TECH'); ?> <span class="required">*</span></label>
                         <input type="date" class="woocommerce-Input woocommerce-Input--text input-text" name="birthday" id="reg_birthday" autocomplete="birthday" value="<?php echo (!empty($_POST['birthday'])) ? esc_attr(wp_unslash($_POST['birthday'])) : ''; ?>" />
                     </p>
 
-                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+
+
+                    <!--p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_billing_address_1"><?php esc_html_e('Address', 'YC_TECH'); ?> <span class="required">*</span></label>
                         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_address_1" id="reg_billing_address_1" autocomplete="billing_address_1" value="<?php echo (!empty($_POST['billing_address_1'])) ? esc_attr(wp_unslash($_POST['billing_address_1'])) : ''; ?>" />
-                    </p>
+                    </p-->
 
                     <!--p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label for="reg_how_to_know_us"><?php esc_html_e('如何得知我們', 'YC_TECH'); ?> <span class="required">*</span></label>
@@ -152,11 +171,12 @@ class Page extends YC_TECH
                         </select>
                     </p-->
 
-                    <?php do_action('woocommerce_register_form'); ?>
+                    <?php //do_action('woocommerce_register_form');
+                    ?>
 
-                    <p class="woocommerce-FormRow form-row">
+                    <p class="woocommerce-FormRow form-row mt-3r">
                         <?php wp_nonce_field('woocommerce-register', 'woocommerce-register-nonce'); ?>
-                        <button type="submit" class="woocommerce-Button woocommerce-button button btn btn-primary" name="register" value="<?php esc_attr_e('Register', 'woocommerce'); ?>"><?php esc_html_e('Register', 'woocommerce'); ?></button>
+                        <button type="submit" class="woocommerce-Button woocommerce-button button btn btn-primary w-100" name="register" value="<?php esc_attr_e('Register', 'woocommerce'); ?>"><?php esc_html_e('Register', 'woocommerce'); ?></button>
                     </p>
 
 
@@ -164,6 +184,22 @@ class Page extends YC_TECH
                     <?php do_action('woocommerce_register_form_end'); ?>
 
                 </form>
+                <script>
+                    jQuery(document).ready(($) => {
+
+                        const phoneInputField = document.querySelector("#reg_phone");
+                        const phoneInput = window.intlTelInput(phoneInputField, {
+                            preferredCountries: ["us", "gb", "tw", "in", "de"],
+                            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                        });
+
+                        //調整寬度
+                        const _phone_input_width = document.querySelector(".iti--allow-dropdown").offsetWidth;
+                        const _change_phone_country_dropdownwidth = document.querySelector(".iti__country-list").style.width = _phone_input_width + 'px';
+
+
+                    });
+                </script>
             </div>
         </div>
 
@@ -187,5 +223,16 @@ class Page extends YC_TECH
         $css .= '</style>';
 
         echo $css;
+    }
+
+    function yc_add_scripts()
+    {
+
+        //國際電話選單
+        global $post;
+        if ($post->post_name == 'register') {
+            wp_enqueue_style('intlTelInput', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css', array(/* 'jquery' */), '1.0');
+            wp_enqueue_script('intlTelInput', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js', array(/* 'jquery' */), '1.0', false);
+        }
     }
 }

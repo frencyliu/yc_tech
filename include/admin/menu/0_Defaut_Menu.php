@@ -135,6 +135,17 @@ class _Menu extends YC_TECH
                     3
                 );
             }
+            if (class_exists('WooCommerce_Advanced_Free_Shipping', false)) {
+                add_submenu_page(
+                    'edit.php?post_type=shop_coupon',
+                    __('免運費規則', 'YC_TECH'),
+                    __('免運費規則', 'YC_TECH'),
+                    'edit_shop_orders',
+                    'admin.php?page=wc-settings&tab=shipping&section=advanced_free_shipping',
+                    '',
+                    3
+                );
+            }
             //if (class_exists('The_SEO_Framework\Core', false)) {
             add_submenu_page(
                 'edit.php?post_type=shop_coupon',
@@ -159,16 +170,6 @@ class _Menu extends YC_TECH
         }
 
         //網站設定
-
-        /*add_submenu_page(
-            'yc_setting',
-            __('Homepage', 'YC_TECH'),
-            __('Homepage', 'YC_TECH'),
-            'edit_posts',
-            'post.php?post=' . get_option('page_on_front') . '&action=edit',
-            '',
-            2
-        );*/
         add_submenu_page(
             'yc_setting',
             __('Menus', 'YC_TECH'),
@@ -303,28 +304,30 @@ class _Menu extends YC_TECH
   );*/
 
         //商品全局TAB
-        add_submenu_page(
-            'edit.php?post_type=product',
-            __('商品全局TAB', 'YC_TECH'),
-            __('商品全局TAB', 'YC_TECH'),
-            'edit_posts',
-            'admin.php?page=yikes-woo-settings',
-            '',
-            10
-        );
+        if (class_exists('YIKES_Custom_Product_Tabs', false)) {
+            add_submenu_page(
+                'edit.php?post_type=product',
+                __('商品全局TAB', 'YC_TECH'),
+                __('商品全局TAB', 'YC_TECH'),
+                'edit_posts',
+                'admin.php?page=yikes-woo-settings',
+                '',
+                10
+            );
+        }
 
 
-        if(self::$current_user_level < 2){
-        add_menu_page(
-            'BOOTSTRAP 變數設定',
-            'BOOTSTRAP 變數設定',
-            'read',
-            'customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit',
-            '',
-            'dashicons-admin-appearance',
-            6
-        );
-    }
+        if (self::$current_user_level < 2) {
+            add_menu_page(
+                'BOOTSTRAP 變數設定',
+                'BOOTSTRAP 變數設定',
+                'read',
+                'customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit',
+                '',
+                'dashicons-admin-appearance',
+                6
+            );
+        }
 
 
 
@@ -442,6 +445,7 @@ class _Menu extends YC_TECH
     public function yc_remove_menu_page_level_2()
     {
         $this->yc_remove_menu_page_level_1();
+        remove_menu_page('edit.php?post_type=page');
         remove_menu_page('loco');
         remove_menu_page('ags-layouts');
         remove_menu_page('customize.php?return=%2Fwp-admin%2Fpost.php%3Fpost%3D202%26action%3Dedit');

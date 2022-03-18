@@ -46,10 +46,20 @@ class YCWC_Override extends YC_TECH
 
     function yc_override_woocommerce_template($template, $template_name, $template_path)
     {
+
+        $str = strchr($template, "wp-content/themes");
+        //true = theme path, false = plugin path
+        $is_picostrap_theme = strpos($str, '/picostrap5/');
+        //!false = is picostrap theme, false = NOT picostrap theme
+
+
+        //var_dump($is_picostrap_theme);
         global $woocommerce;
         $_template = $template;
 
         if (!$template_path) $template_path = $woocommerce->template_url;
+
+
 
         $plugin_path  = $this->get_plugin_abs_path() . '/templates/woocommerce/';
 
@@ -66,6 +76,8 @@ class YCWC_Override extends YC_TECH
         // Modification: Get the template from this plugin, if it exists
         if (!$template && file_exists($plugin_path . $template_name))
             $template = $plugin_path . $template_name;
+
+
 
         // Use default template
         if (!$template)
@@ -89,20 +101,7 @@ class YCWC_Override extends YC_TECH
             );
             remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
 
-            //改成加入購物車
-            add_action(
-                'woocommerce_before_shop_loop_item',
-                function () {
-                    global $product;
-                    echo '<a href="?add-to-cart=105" data-quantity="1" class="show_cart add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_ID() . '" >';
-                },
-                10
-            );
         }
-        //移除coupon
-        remove_action('woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10);
-        //改位置
-        add_action('woocommerce_checkout_order_review', 'woocommerce_checkout_coupon_form', 100);
     }
 }
 new YCWC_Override();

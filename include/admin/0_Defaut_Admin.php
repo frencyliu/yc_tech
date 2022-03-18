@@ -5,6 +5,7 @@
  */
 
 namespace YC\Admin;
+
 use YC_TECH;
 
 defined('ABSPATH') || exit;
@@ -14,10 +15,6 @@ class Custom_Admin extends YC_TECH
 
     public function __construct()
     {
-
-
-
-
         //---- 註冊設定 ----//
         //add_action('admin_init', [$this, 'yc_sync_data']);
 
@@ -97,10 +94,41 @@ class Custom_Admin extends YC_TECH
 
         //CHATBUTTON 前端顯示
         add_action('wp_footer', [$this, 'yc_add_chatbutton_frontend']);
+
+        //login page
+        add_action('login_head', [$this,  'add_css_login_page']);
+
+        //refirect after logout and without confirmation
+        add_action('check_admin_referer', 'scratchcode_logout_without_confirm', 10, 2);
+
+        add_filter( 'login_display_language_dropdown' , '__return_false' );
+    }
+
+    function scratchcode_logout_without_confirm($action, $result){
+        /**
+        * Allow logout without confirmation
+        */
+        if ($action == "log-out" && !isset($_GET['_wpnonce'])):
+            $redirectUrl = site_url();
+            wp_redirect( str_replace( '&', '&', wp_logout_url( $redirectUrl.'?logout=true' ) ) );
+            exit;
+        endif;
     }
 
 
 
+
+    function add_css_login_page()
+    {
+?>
+
+        <style>
+            .language-switcher {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
 
 
 
@@ -222,17 +250,17 @@ class Custom_Admin extends YC_TECH
     public function yc_add_admin_footer()
     {
         global $pagenow;
-        if($pagenow == 'admin.php' && $_GET['page'] == 'wc-order-export'){
-            ?>
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'wc-order-export') {
+        ?>
             <script>
-                jQuery('#my-date-filter').ready(function(){
+                jQuery('#my-date-filter').ready(function() {
                     let today = new Date();
-                let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                jQuery('#from_date').val(date);
-                jQuery('#to_date').val(date);
+                    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    jQuery('#from_date').val(date);
+                    jQuery('#to_date').val(date);
                 });
             </script>
-            <?php
+        <?php
         }
     }
 
@@ -266,7 +294,7 @@ class Custom_Admin extends YC_TECH
 
     public function yc_add_wp_head()
     {
-?>
+        ?>
         <!--Disable Safari support-->
         <meta name="format-detection" content="telephone=no">
 
@@ -317,7 +345,7 @@ class Custom_Admin extends YC_TECH
         </script>
 
 
-        <?php
+<?php
     }
 
 
@@ -340,7 +368,7 @@ class Custom_Admin extends YC_TECH
     function yc_set_admin_redirect()
     {
         if (class_exists('WP_Statistics', false)) {
-            if ( strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false && $_SERVER['QUERY_STRING'] == '') {
+            if (strpos($_SERVER['PHP_SELF'], 'wp-admin/index.php') !== false && $_SERVER['QUERY_STRING'] == '') {
                 $redirect_to = admin_url() . 'admin.php?page=wps_overview_page';
                 wp_redirect($redirect_to);
                 exit;
@@ -358,7 +386,7 @@ class Custom_Admin extends YC_TECH
 
         $args = array(
             'id'    => 'sitetool',
-            'title' => '站長工具',
+            'title' => __('Quick Link', 'yc_tech'),
             'meta'  => array(
                 'class' => 'uk-background-muted uk-border-rounded '
             ),
@@ -387,7 +415,7 @@ class Custom_Admin extends YC_TECH
         );
         $admin_bar->add_node($args);
 
-        if (class_exists('WooCommerce', false)) {
+        if (IS_WC) {
             $args = array(
                 'parent' => 'sitetool',
                 'id'     => 'ecpay',
@@ -399,6 +427,8 @@ class Custom_Admin extends YC_TECH
             );
             $admin_bar->add_node($args);
         }
+
+        do_action('yc_add_toolbar', $admin_bar);
 
 
         /*$wp_admin_bar->add_node([
@@ -486,9 +516,6 @@ class Custom_Admin extends YC_TECH
         $wp_admin_bar->remove_menu('wp-logo');
         //$wp_admin_bar->remove_menu('new-content');
         $wp_admin_bar->remove_menu('fb-edit');
-
-
-
     }
 
     function yc_remove_all_image_sizes()

@@ -23,11 +23,18 @@ class _General extends YC_TECH
 
     public function yc_add_shortcode()
     {
+        //Basic
+        add_shortcode('yc_get_site_logo', [$this, 'yc_get_site_logo_f' ]);
         //login form
         add_shortcode('yc_login_form', [$this, 'yc_login_form_function' ]);
+
+        //WC
+        add_shortcode('ajax_add_to_cart', [$this, 'custom_ajax_add_to_cart_button'] );
         add_shortcode('get_monthly_sales', [$this, 'get_monthly_sales_f']);
         add_shortcode('get_last_monthly_sales', [$this, 'get_last_monthly_sales_f']);
         add_shortcode('get_dates_sales', [$this, 'get_dates_sales_f']);
+
+
     }
 
 
@@ -36,6 +43,55 @@ class _General extends YC_TECH
 function add_lost_password_link() {
     return '<a href="/wp-login.php?action=lostpassword">Forgot Your Password?</a>';
 }*/
+
+    function custom_ajax_add_to_cart_button( $atts ) {
+        // Shortcode attributes
+        $atts = shortcode_atts( array(
+            'id' => '0', // Product ID
+            'qty' => '1', // Product quantity
+            'text' => '', // Text of the button
+            'class' => '', // Additional classes
+        ), $atts, 'ajax_add_to_cart' );
+
+        if( esc_attr( $atts['id'] ) == 0 ) return; // Exit when no Product ID
+
+        if( get_post_type( esc_attr( $atts['id'] ) ) != 'product' ) return; // Exit if not a Product
+
+        $product = wc_get_product( esc_attr( $atts['id'] ) );
+
+        if ( ! $product ) return; // Exit when if not a valid Product
+
+        $classes = implode( ' ', array_filter( array(
+            'product_type_' . $product->get_type(),
+            $product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
+            $product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+        ) ) ).' '.$atts['class'];
+
+        $add_to_cart_button = sprintf( '<a rel="nofollow" href="%s" %s %s %s class="%s">%s</a>',
+            esc_url( $product->add_to_cart_url() ),
+            'data-quantity="' . esc_attr( $atts['qty'] ) .'"',
+            'data-product_id="' . esc_attr( $atts['id'] ) .'"',
+            'data-product_sku="' . esc_attr( $product->get_sku() ) .'"',
+            esc_attr( isset( $classes ) ? $classes : 'button' ),
+            esc_html( empty( esc_attr( $atts['text'] ) ) ? $product->add_to_cart_text() : esc_attr( $atts['text'] ) )
+        );
+
+        return $add_to_cart_button;
+    }
+
+
+public function yc_get_site_logo_f( $atts = array() ){
+    // set up default parameters
+    extract(shortcode_atts(array(
+        'width' => '130',
+        'height' => '80'
+       ), $atts));
+    $img_id = get_option( 'site_logo', '147' );
+    $site_name = get_option( 'blogname', '網站標題' );
+    $img_url = wp_get_attachment_image_url( $img_id, 'full' );
+    return '<img src="' . $img_url . '"
+    alt="' . $site_name . '" width="' . $width . '" height="' . $height . '" class="site_logo" />';
+}
 
 
   function yc_login_form_function()

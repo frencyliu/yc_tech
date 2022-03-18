@@ -18,6 +18,8 @@ span.gutenberg,
     display: none !important;
 }
 
+
+
 /*GENERAL*/
 ::placeholder {
     color: #ddd;
@@ -729,4 +731,11 @@ table.wp-list-table span.wc-image {
     width: unset;
     position: relative;
     top: 7px;
+}
+
+/*Online Contract*/
+#custom_options tr td{
+    vertical-align: top;
+    padding: 15px 0px;
+    border-bottom: 1px solid #ccc !important;
 }

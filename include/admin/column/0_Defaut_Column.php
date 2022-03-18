@@ -24,9 +24,17 @@ class _Default extends YC_TECH
                 unset($columns['tags']);
                 unset($columns['cs_replacement-hide']);
                 return $columns;
-            }, 200);
-
+            }, 200, 1);
         }
+
+        add_filter('manage_edit-shop_order_columns', [$this, 'yc_remove_column_shop_order'], 99, 1);
+
+        add_filter('manage_edit-product_columns', [$this, 'yc_remove_column_product'], 99, 1);
+
+
+
+        add_filter('manage_users_columns', [$this, 'yc_remove_column_user'], 99, 1);
+
 
 
         //設定欄位標題
@@ -54,9 +62,59 @@ class _Default extends YC_TECH
         }, 200, 1);
     }
 
-    static public function get_order_history_num(){
+    function yc_remove_column_shop_order($columns)
+    {
+        //var_dump($columns);
+        unset($columns['woe_export_status']);
+        $columns = array(
+            'cb' => '<input type="checkbox">',
+            'order_number' => '訂單',
+            'order_date' => '訂單日期',
+            'order_status' => '狀態',
+            'billing_address' => '帳單',
+            'shipping_address' => '運送至',
+            'woocommerce-advanced-shipment-tracking' => '配送狀態',
+            'order_total' => '總計',
+            'wc_actions' => '動作',
+        );
+        return $columns;
+    }
+
+    function yc_remove_column_product($columns)
+    {
+
+        $columns = array(
+            'cb' => '<input type="checkbox">',
+            'thumb' => '圖片',
+            'name' => '名稱',
+            'featured' => '精選',
+            'price' => '價格',
+            'is_in_stock' => '庫存',
+            'sku' => '貨號',
+            'product_cat' => '分類',
+            'product_tag' => '標籤',
+            'tsf-seo-bar-wrap' => 'SEO',
+            'date' => '發佈日期',
+            'tsf-quick-edit' => '',
+        );
+        if (!TAG_ENABLE) {
+            unset($columns['product_tag']);
+        }
+        return $columns;
+    }
+
+    function yc_remove_column_user($columns)
+    {
+
+        unset($columns['heateor_ss_delete_profile_data']);
+
+        return $columns;
+    }
+
+    static public function get_order_history_num()
+    {
         $default_order_history = 4;
-       return apply_filters( 'yc_change_order_history', $default_order_history );
+        return apply_filters('yc_change_order_history', $default_order_history);
     }
 
     /** !!!!!!!!!!!!!!!!!!!!
@@ -68,7 +126,7 @@ class _Default extends YC_TECH
     public function get_order_data_by_user_date($user_id, $months_ago = 0, $args = array())
     {
         $user = get_userdata($user_id);
-        $that_date = strtotime("first day of -" . $months_ago ." month", time());
+        $that_date = strtotime("first day of -" . $months_ago . " month", time());
         $that_date = strtotime("first day of +1 month", $that_date);
 
         $user_registed_time = strtotime($user->data->user_registered);
