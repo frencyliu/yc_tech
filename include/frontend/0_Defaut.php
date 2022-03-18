@@ -47,7 +47,7 @@ class _Default extends YC_TECH
         wp_enqueue_script('Lottie js', 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js');
 
 
-        wp_enqueue_script('YC_TECH front js', YC_ROOT_URL . '/assets/js/yc_front.js');
+        wp_enqueue_script('YC_TECH front js', YC_ROOT_URL . '/assets/js/yc_front.js', array(), '1.1',);
         if (FA_ENABLE) {
             wp_enqueue_script('fontawesome_js',  YC_ROOT_URL . '/assets/fontawesome/js/all.min.js');
         }
