@@ -6,6 +6,7 @@
  */
 
 namespace YC\ShortCode;
+
 use YC_TECH;
 
 
@@ -24,17 +25,16 @@ class _General extends YC_TECH
     public function yc_add_shortcode()
     {
         //Basic
-        add_shortcode('yc_get_site_logo', [$this, 'yc_get_site_logo_f' ]);
+        add_shortcode('yc_get_site_logo', [$this, 'yc_get_site_logo_f']);
+        add_shortcode('yc_theme_mod', [$this, 'yc_theme_mod_f']);
         //login form
-        add_shortcode('yc_login_form', [$this, 'yc_login_form_function' ]);
+        add_shortcode('yc_login_form', [$this, 'yc_login_form_function']);
 
         //WC
-        add_shortcode('ajax_add_to_cart', [$this, 'custom_ajax_add_to_cart_button'] );
+        add_shortcode('ajax_add_to_cart', [$this, 'custom_ajax_add_to_cart_button']);
         add_shortcode('get_monthly_sales', [$this, 'get_monthly_sales_f']);
         add_shortcode('get_last_monthly_sales', [$this, 'get_last_monthly_sales_f']);
         add_shortcode('get_dates_sales', [$this, 'get_dates_sales_f']);
-
-
     }
 
 
@@ -43,84 +43,98 @@ class _General extends YC_TECH
 function add_lost_password_link() {
     return '<a href="/wp-login.php?action=lostpassword">Forgot Your Password?</a>';
 }*/
+    function yc_theme_mod_f($atts)
+    {
+        extract(shortcode_atts(array(
+            'mod' => '',
+        ), $atts));
+        if (empty(get_theme_mod($mod))) {
+            return '';
+        } else {
+            return get_theme_mod($mod);
+        }
+    }
 
-    function custom_ajax_add_to_cart_button( $atts ) {
+    function custom_ajax_add_to_cart_button($atts)
+    {
         // Shortcode attributes
-        $atts = shortcode_atts( array(
+        $atts = shortcode_atts(array(
             'id' => '0', // Product ID
             'qty' => '1', // Product quantity
             'text' => '', // Text of the button
             'class' => '', // Additional classes
-        ), $atts, 'ajax_add_to_cart' );
+        ), $atts, 'ajax_add_to_cart');
 
-        if( esc_attr( $atts['id'] ) == 0 ) return; // Exit when no Product ID
+        if (esc_attr($atts['id']) == 0) return; // Exit when no Product ID
 
-        if( get_post_type( esc_attr( $atts['id'] ) ) != 'product' ) return; // Exit if not a Product
+        if (get_post_type(esc_attr($atts['id'])) != 'product') return; // Exit if not a Product
 
-        $product = wc_get_product( esc_attr( $atts['id'] ) );
+        $product = wc_get_product(esc_attr($atts['id']));
 
-        if ( ! $product ) return; // Exit when if not a valid Product
+        if (!$product) return; // Exit when if not a valid Product
 
-        $classes = implode( ' ', array_filter( array(
+        $classes = implode(' ', array_filter(array(
             'product_type_' . $product->get_type(),
             $product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
-            $product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
-        ) ) ).' '.$atts['class'];
+            $product->supports('ajax_add_to_cart') ? 'ajax_add_to_cart' : '',
+        ))) . ' ' . $atts['class'];
 
-        $add_to_cart_button = sprintf( '<a rel="nofollow" href="%s" %s %s %s class="%s">%s</a>',
-            esc_url( $product->add_to_cart_url() ),
-            'data-quantity="' . esc_attr( $atts['qty'] ) .'"',
-            'data-product_id="' . esc_attr( $atts['id'] ) .'"',
-            'data-product_sku="' . esc_attr( $product->get_sku() ) .'"',
-            esc_attr( isset( $classes ) ? $classes : 'button' ),
-            esc_html( empty( esc_attr( $atts['text'] ) ) ? $product->add_to_cart_text() : esc_attr( $atts['text'] ) )
+        $add_to_cart_button = sprintf(
+            '<a rel="nofollow" href="%s" %s %s %s class="%s">%s</a>',
+            esc_url($product->add_to_cart_url()),
+            'data-quantity="' . esc_attr($atts['qty']) . '"',
+            'data-product_id="' . esc_attr($atts['id']) . '"',
+            'data-product_sku="' . esc_attr($product->get_sku()) . '"',
+            esc_attr(isset($classes) ? $classes : 'button'),
+            esc_html(empty(esc_attr($atts['text'])) ? $product->add_to_cart_text() : esc_attr($atts['text']))
         );
 
         return $add_to_cart_button;
     }
 
 
-public function yc_get_site_logo_f( $atts = array() ){
-    // set up default parameters
-    extract(shortcode_atts(array(
-        'width' => '130',
-        'height' => '80'
-       ), $atts));
-    $img_id = get_option( 'site_logo', '147' );
-    $site_name = get_option( 'blogname', '網站標題' );
-    $img_url = wp_get_attachment_image_url( $img_id, 'full' );
-    return '<img src="' . $img_url . '"
+    public function yc_get_site_logo_f($atts = array())
+    {
+        // set up default parameters
+        extract(shortcode_atts(array(
+            'width' => '130',
+            'height' => '80'
+        ), $atts));
+        $img_id = get_option('site_logo', '147');
+        $site_name = get_option('blogname', '網站標題');
+        $img_url = wp_get_attachment_image_url($img_id, 'full');
+        return '<img src="' . $img_url . '"
     alt="' . $site_name . '" width="' . $width . '" height="' . $height . '" class="site_logo" />';
-}
+    }
 
 
-  function yc_login_form_function()
-  {
+    function yc_login_form_function()
+    {
 
 
-      $args = array(
-        'echo'           => true,
-        'remember'       => true,
-        'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
-        'form_id'        => 'loginform',
-        'id_username'    => 'user_login',
-        'id_password'    => 'user_pass',
-        'id_remember'    => 'rememberme',
-        'id_submit'      => 'wp-submit',
-        'label_username' => __( 'Username or Email Address', 'yc_tech' ),
-        'label_password' => __( 'Password', 'yc_tech' ),
-        'label_remember' => __( 'Remember Me', 'yc_tech' ),
-        'label_log_in'   => __( 'Log In', 'yc_tech' ),
-        'value_username' => '',
-        'value_remember' => false
-    );
-    wp_login_form($args);
-    //add_lost_password_link();
-  }
+        $args = array(
+            'echo'           => true,
+            'remember'       => true,
+            'redirect'       => (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+            'form_id'        => 'loginform',
+            'id_username'    => 'user_login',
+            'id_password'    => 'user_pass',
+            'id_remember'    => 'rememberme',
+            'id_submit'      => 'wp-submit',
+            'label_username' => __('Username or Email Address', 'yc_tech'),
+            'label_password' => __('Password', 'yc_tech'),
+            'label_remember' => __('Remember Me', 'yc_tech'),
+            'label_log_in'   => __('Log In', 'yc_tech'),
+            'value_username' => '',
+            'value_remember' => false
+        );
+        wp_login_form($args);
+        //add_lost_password_link();
+    }
 
     public function get_monthly_sales_f()
     {
-        if(!IS_WC) return '沒有開啟電商功能';
+        if (!IS_WC) return '沒有開啟電商功能';
         /**
          * 當月銷量
          */
@@ -168,7 +182,7 @@ public function yc_get_site_logo_f( $atts = array() ){
 
     public function get_last_monthly_sales_f()
     {
-        if(!IS_WC) return '沒有開啟電商功能';
+        if (!IS_WC) return '沒有開啟電商功能';
         /**
          * 上月銷量
          */
@@ -218,7 +232,7 @@ public function yc_get_site_logo_f( $atts = array() ){
     public function get_dates_sales_f($atts = [])
     {
 
-        if(!IS_WC) return '沒有開啟電商功能';
+        if (!IS_WC) return '沒有開啟電商功能';
         /**
          * 指定時間銷量
          */
@@ -277,4 +291,3 @@ public function yc_get_site_logo_f( $atts = array() ){
 }
 
 new _General();
-

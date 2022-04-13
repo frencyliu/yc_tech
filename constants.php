@@ -59,8 +59,7 @@ class _Const extends YC_TECH
 
 
             //
-            $img_url = get_stylesheet_directory_uri() . '/assets/img';
-            define('IMG_URL', $img_url);
+
 
     }
 

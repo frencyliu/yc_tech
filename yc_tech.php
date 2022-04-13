@@ -159,7 +159,7 @@ if (!class_exists('YC_TECH')) {
             }, 99, 1);
 
             $wp_roles = new WP_Roles();
-            $wp_roles->roles['administrator']['name'] = '至高無上的存在';
+            //$wp_roles->roles['administrator']['name'] = '帥哥';
             remove_role('author');
             remove_role('contributor');
             remove_role('subscriber');

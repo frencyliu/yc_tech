@@ -70,11 +70,13 @@ class _Default extends YC_TECH
         //remove in all post_type
         $all_post_types = get_post_types();
         foreach ($all_post_types as $post_type) {
+            /*
             remove_meta_box(
                 'lca_meta_boxes',
                 $post_type,
                 'side'
             );
+            */
 
             remove_meta_box(
                 'simple_css_metabox',
@@ -289,4 +291,4 @@ class _Default extends YC_TECH
 
 new _Default();
 
-require_once __DIR__ . '/1_LC_builder_modify.php';
+//require_once __DIR__ . '/1_LC_builder_modify.php';

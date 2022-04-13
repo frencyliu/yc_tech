@@ -816,6 +816,13 @@ ul.tr-gallery-list {
     left: -7px;
 }
 
+/*
+ * fly cart
+ */
+ .woofc-area .woofc-cross-sells .slick-dots li button{
+     border: none;
+ }
+
 .tr-gallery-list .image-picker-placeholder>a.dashicons-no-alt {
     right: -10px;
     top: 0px;

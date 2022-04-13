@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Video post type
+ * Column
  */
 
 namespace YC\Admin\Column;

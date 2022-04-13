@@ -26,7 +26,7 @@ class _Default extends YC_TECH
         wp_enqueue_style('YC_TECH front css', YC_ROOT_URL . '/assets/css/yc_front_level_' . self::$current_user_level . '.css', array(), '1.0.1');
 
         if (FA_ENABLE) {
-            wp_enqueue_style('fontawesome_css', YC_ROOT_URL . '/assets/fontawesome/css/all.min.css');
+            wp_enqueue_style('fontawesome_css', YC_ROOT_URL . '/assets/fontawesome-pro-6/css/all.min.css');
         }
         if (FLIPSTER_ENABLE) {
             wp_enqueue_style('flipster_css', YC_ROOT_URL . '/assets/flipster/jquery.flipster.min.css');
@@ -49,7 +49,7 @@ class _Default extends YC_TECH
 
         wp_enqueue_script('YC_TECH front js', YC_ROOT_URL . '/assets/js/yc_front.js', array(), '1.1',);
         if (FA_ENABLE) {
-            wp_enqueue_script('fontawesome_js',  YC_ROOT_URL . '/assets/fontawesome/js/all.min.js');
+            wp_enqueue_script('fontawesome_js',  YC_ROOT_URL . '/assets/fontawesome-pro-6/js/all.min.js');
         }
         if (FLIPSTER_ENABLE) {
             wp_enqueue_script('flipster_js', YC_ROOT_URL . '/assets/flipster/jquery.flipster.min.js');

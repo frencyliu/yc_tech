@@ -10,7 +10,7 @@ use YC_TECH;
 
 defined('ABSPATH') || exit;
 
-if (!class_exists('WooCommerce', false)) return;
+if (!IS_WC) return;
 class YCWC extends YC_TECH
 {
 
@@ -34,9 +34,9 @@ class YCWC extends YC_TECH
         */
 
         //代處理  全站優惠
-        //add_filter('woocommerce_cart_totals_coupon_label', [$this,  'filter_woocommerce_cart_totals_coupon_label'], 99, 2);
-        //add_action('admin_footer', [$this,  'make_coupon_uneditable'], 99);
-        //add_filter('woocommerce_cart_subtotal', [$this,  'royal_woocommerce_filter_checkout_for_coupons'], 99, 3);
+        add_filter('woocommerce_cart_totals_coupon_label', [$this,  'yc_change_wc_cart_totals_coupon_label'], 10, 2);
+        add_action('admin_footer', [$this,  'yc_make_coupon_uneditable'], 99);
+        add_filter('woocommerce_cart_subtotal', [$this,  'yc_set_default_coupons'], 10, 3);
 
 
         //change woocommerce default recipient
@@ -51,6 +51,15 @@ class YCWC extends YC_TECH
 
 
         add_filter( 'product_type_selector', [$this, 'yc_remove_product_types' ], 99 );
+
+        //add_filter( 'woofc_above_total_content', [$this, 'add_coupon_to_fly_car' ], 99, 1 );
+    }
+
+    function add_coupon_to_fly_car(){
+
+        $html = '<hr class="bg-white opacity-100 my-2">';
+        return $html;
+
     }
 
     function yc_remove_product_types( $types ){
@@ -134,13 +143,14 @@ class YCWC extends YC_TECH
     }
 
     // Tested and works for WooCommerce versions 2.6.x, 3.0.x and 3.1.x
-    function make_coupon_uneditable()
+    function yc_make_coupon_uneditable()
     {
         global $post;
-        if (get_current_screen()->id == 'shop_coupon' && $post->ID == 241582) {
+        if (get_current_screen()->id == 'shop_coupon' && $post->post_title == '全站折扣設定') {
 ?>
             <style>
-                #titlewrap .generate-coupon-code {
+                #titlewrap .generate-coupon-code,
+                #delete-action {
                     display: none !important;
                 }
 
@@ -155,20 +165,16 @@ class YCWC extends YC_TECH
             </script>
         <?php
         }
-        if (get_current_screen()->id == 'toplevel_page_wpsc-tickets') {
-        ?>
-            <script src='<?php echo get_stylesheet_directory_uri() ?>/admin.js?v=1.0.2' id='yc-admin-js'></script>
-<?php
-        }
     }
 
 
-    function royal_woocommerce_filter_checkout_for_coupons($subtotal, $compound, $cart)
+    function yc_set_default_coupons($subtotal, $compound, $cart)
     {
 
         $coupon_name = '全站折扣設定';
-        $d = new WC_Discounts($cart);
-        $c = new WC_Coupon($coupon_name);
+        $d = new \WC_Discounts($cart);
+
+        $c = new \WC_Coupon($coupon_name);
 
         //var_dump($d->is_coupon_valid( $c ));
 
@@ -195,14 +201,20 @@ class YCWC extends YC_TECH
             // Apply the store credit coupon to the cart & update totals
             $cart->applied_coupons = array($coupon_name);
             $cart->set_discount_total($discount_amount);
-            $cart->set_total($cart->get_subtotal() - $discount_amount);
+            $cart->set_total($cart->get_subtotal() - $discount_amount + $cart->get_shipping_total());
             $cart->coupon_discount_totals = $coupon;
         }
+
+        //YC_TECH::DEBUG(, true);
+
+
+        //var_dump();
+
         return $subtotal;
     }
 
 
-    function filter_woocommerce_cart_totals_coupon_label($label, $coupon)
+    function yc_change_wc_cart_totals_coupon_label($label, $coupon)
     {
         // Compare
         if ($coupon->get_code() == '全站折扣設定') {
