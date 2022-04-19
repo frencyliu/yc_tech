@@ -142,14 +142,14 @@ class yc_Select2CustomFieldType extends yc_AdminPageFramework_FieldType_select {
             array(
                 'handle_id'     => 'select2',
                 'src'           => $_bDebugMode
-                    ? dirname( __FILE__ ) . '/select2/js/select2.full.js'
-                    : dirname( __FILE__ ) . '/select2/js/select2.full.min.js',
+                    ? plugin_dir_url( __FILE__ ) . '/select2/js/select2.full.js'
+                    : plugin_dir_url( __FILE__ ) . '/select2/js/select2.full.min.js',
                 'in_footer'     => true,
                 'dependencies'  => array( 'jquery' ),
             ),
             array(
                 'handle_id'     => 'yc_AdminPageFrameworkSelect2FieldType',
-                'src'           => dirname( __FILE__ ) . '/js/loader.js',
+                'src'           => plugin_dir_url( __FILE__ ) . '/js/loader.js',
                 'in_footer'     => true,
                 'dependencies'  => array( 'jquery', 'select2' ),
                 'translation'   => array(
@@ -167,9 +167,9 @@ class yc_Select2CustomFieldType extends yc_AdminPageFramework_FieldType_select {
     protected function getEnqueuingStyles() {
         return array(
             $this->isDebugMode()
-                ? dirname( __FILE__ ) . '/select2/css/select2.css'
-                : dirname( __FILE__ ) . '/select2/css/select2.min.css',
-            dirname( __FILE__ ) . '/css/style.css',
+                ? plugin_dir_url( __FILE__ ) . '/select2/css/select2.css'
+                : plugin_dir_url( __FILE__ ) . '/select2/css/select2.min.css',
+                plugin_dir_url( __FILE__ ) . '/css/style.css',
         );
     }
 
