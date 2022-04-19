@@ -158,6 +158,9 @@ fieldset div[class*="-input-label-container"]{
 .yc_tech-input-label-container.yc_tech-select-label select{
     width:100%;
 }
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li{
+    display:flex !important;
+}
 /*
 div[class*="yc_tech"] input,
 .yc_tech-section .form-table td label,
