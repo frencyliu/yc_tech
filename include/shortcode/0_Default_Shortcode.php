@@ -98,13 +98,41 @@ function add_lost_password_link() {
         // set up default parameters
         extract(shortcode_atts(array(
             'width' => '130',
-            'height' => '80'
+            'height' => '80',
+            'blend_color' => 'unset',
         ), $atts));
         $img_id = get_option('site_logo', '147');
         $site_name = get_option('blogname', '網站標題');
         $img_url = wp_get_attachment_image_url($img_id, 'full');
-        return '<img src="' . $img_url . '"
-    alt="' . $site_name . '" width="' . $width . '" height="' . $height . '" class="site_logo" />';
+        switch ($blend_color) {
+            case 'white':
+                $filter_css = 'filter: brightness(100) saturate(0);';
+                break;
+            case 'black':
+                $filter_css = 'filter: brightness(0);';
+                break;
+            default:
+                $filter_css = '';
+                break;
+        }
+
+        $html = '';
+?>
+        <style>
+            .site_logo {
+                width: <?php echo $width; ?>px;
+                height: <?php echo $height; ?>px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-image: url('<?php echo $img_url; ?>');
+                <?php echo $filter_css; ?>
+            }
+        </style>
+        <div class="site_logo"></div>
+<?php
+        $html .= ob_get_clean();
+        return $html;
     }
 
 

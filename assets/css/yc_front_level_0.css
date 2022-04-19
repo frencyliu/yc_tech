@@ -120,7 +120,7 @@
 /*font awesome*/
 /*
 .fa,.fab,.fad,.fal,.far,.fas{
-    font-family: "Font Awesome 5 pro" !important;
+    font-family: "Font Awesome 6 Pro" !important;
 }
 */
 /*CHATBUTTON*/
@@ -713,13 +713,13 @@ i.theChampLogin .theChampLineLoginSvg {
 button.slick-prev:before{
     content: "\f053";
     font-weight: 300;
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 6 Pro";
     color: #bbb;
 }
 button.slick-next:before{
     content: "\f054";
     font-weight: 300;
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 6 Pro";
     color: #bbb;
 }
 /*ycwc woocommerce*/

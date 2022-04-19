@@ -14,6 +14,8 @@ class _Const extends YC_TECH
 
     public function __construct()
     {
+            if (!defined('IMG_URL')) define('IMG_URL', get_stylesheet_directory_uri() . '/assets/img');
+
             if (!defined('BET')) define('BET', false);
 
 
