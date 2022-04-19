@@ -1,12 +1,10 @@
 // Notice how this gets configured before we load Font Awesome
-window.FontAwesomeConfig = { autoReplaceSvg: false };
+window.FontAwesomeConfig = {
+    autoReplaceSvg: false
+};
 
 jQuery(document).ready(($) => {
 
-    //錨點偏移
-    var offset = jQuery(':target').offset();
-	var scrollto = offset.top - 150; // minus fixed header height
-	jQuery('html, body').animate({scrollTop:scrollto}, 0);
 
     /**
      * Login popup
@@ -49,17 +47,25 @@ jQuery(document).ready(($) => {
     let left_shift_unit = left_shift + "px";
     let count_btn = jQuery(".chatbutton_content_inner_scroll a").length;
     let count_width = 75 * count_btn;
-    jQuery(".chatbutton_content_inner_scroll").css({ "min-width": count_width + "px" });
+    jQuery(".chatbutton_content_inner_scroll").css({
+        "min-width": count_width + "px"
+    });
     jQuery(".chatbutton_content .fa-reply-all").click(function () {
-        jQuery(".chatbutton_content").addClass("expand").animate({ left: "0px" }, 300);
+        jQuery(".chatbutton_content").addClass("expand").animate({
+            left: "0px"
+        }, 300);
     });
     jQuery(".chatbutton_content .fa-share-all").click(function () {
-        jQuery(".chatbutton_content").removeClass("expand").animate({ left: left_shift_unit }, 300);
+        jQuery(".chatbutton_content").removeClass("expand").animate({
+            left: left_shift_unit
+        }, 300);
     });
 
     jQuery(".chatbutton_content .fa-arrow-from-right.expand").click(function () {
         jQuery(".chatbutton_content .fa-arrow-from-right.expand").removeClass("expand");
-        jQuery(".chatbutton_content").animate({ left: left_shift_unit }, 300);
+        jQuery(".chatbutton_content").animate({
+            left: left_shift_unit
+        }, 300);
     });
 
     //Copy URL
