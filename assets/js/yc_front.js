@@ -2,6 +2,12 @@
 window.FontAwesomeConfig = { autoReplaceSvg: false };
 
 jQuery(document).ready(($) => {
+
+    //錨點偏移
+    var offset = jQuery(':target').offset();
+	var scrollto = offset.top - 150; // minus fixed header height
+	jQuery('html, body').animate({scrollTop:scrollto}, 0);
+
     /**
      * Login popup
      */
