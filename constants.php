@@ -36,6 +36,8 @@ class _Const extends YC_TECH
             if (!defined('YCWC_SHOW_DIRECT_BUY_WHEN_LOOP')) define('YCWC_SHOW_DIRECT_BUY_WHEN_LOOP', true);
             if (!defined('YCWC_SHOW_EXCERPT_WHEN_LOOP')) define('YCWC_SHOW_EXCERPT_WHEN_LOOP', false);
             if (!defined('FA_ENABLE')) define('FA_ENABLE', true);
+            if (!defined('FA_ENABLE_SVG')) define('FA_ENABLE_SVG', false);
+            if (!defined('LOTTIE_ENABLE')) define('LOTTIE_ENABLE', false);
             if (!defined('TAG_ENABLE')) define('TAG_ENABLE', false);
             if (!defined('CAT_RADIO')) define('CAT_RADIO', false);//設分類為單選
             if (!defined('VIDEO_CPT')) define('VIDEO_CPT', false);//設分類為單選
